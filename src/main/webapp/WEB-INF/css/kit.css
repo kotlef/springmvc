@@ -1,0 +1,26 @@
+.kit-text{  
+    background-image: url(icons/pen.gif) !important;    
+    background-attachment: scroll !important;     
+    padding-left: 15px !important;    
+    background-position: 3px 50% !important;   
+    background-repeat: no-repeat !important;  
+} 
+.kit-text-im{  
+	vertical-align:middle;  
+    text-align:center;
+    color:red; 
+} 
+.kit-alarmdispatch{  
+	background-image: url(icons/alarm_dis.png) !important;    
+    background-attachment: scroll !important;    
+    background-repeat: no-repeat !important; 
+    width:120px;
+    height:110px;
+}
+.kit-line {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 0;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #ccc;
+}

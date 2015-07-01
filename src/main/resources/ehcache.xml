@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.ehcache.org/ehcache.xsd"
+	name="clusterCache" updateCheck="true" monitoring="autodetect"
+	dynamicConfig="true">
+	<!-- maxElementsInMemory为缓存对象的最大数目, eternal设置是否永远不过期, timeToIdleSeconds对象处于空闲状态的最多秒数, 
+		timeToLiveSeconds对象处于缓存状态的最多秒数 -->
+
+	<diskStore path="java.io.tmpdir/ehcache/spring" />
+
+	<defaultCache maxElementsInMemory="10000" eternal="true"
+		timeToLiveSeconds="0" timeToIdleSeconds="0" diskPersistent="true"
+		overflowToDisk="true" diskExpiryThreadIntervalSeconds="600">
+
+	</defaultCache>
+	
+	<cache name="shiroAuthorizationCache" maxElementsInMemory="10000"
+		eternal="true" timeToLiveSeconds="0" timeToIdleSeconds="0"
+		diskPersistent="true" overflowToDisk="true"
+		diskExpiryThreadIntervalSeconds="600">
+	
+	</cache>
+
+	<cache name="shiroAuthenticationCache" maxElementsInMemory="10000"
+		eternal="true" timeToLiveSeconds="0" timeToIdleSeconds="0"
+		diskPersistent="true" overflowToDisk="true"
+		diskExpiryThreadIntervalSeconds="600">
+		
+	</cache>
+	
+	<cache name="shiroActiveSessionCache" maxElementsInMemory="10000"
+		eternal="true" timeToLiveSeconds="0" timeToIdleSeconds="0"
+		diskPersistent="true" overflowToDisk="true"
+		diskExpiryThreadIntervalSeconds="600">
+	
+	</cache>
+</ehcache>

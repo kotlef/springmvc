@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/cache
+	  http://www.springframework.org/schema/cache/spring-cache.xsd
+      http://www.springframework.org/schema/jee
+      http://www.springframework.org/schema/jee/spring-jee.xsd
+      http://www.springframework.org/schema/util
+	  http://www.springframework.org/schema/util/spring-util.xsd
+	  http://www.springframework.org/schema/data/jpa
+      http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	<description>Shiro 配置</description>
+
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+
+	<bean id="encryptionBean" class="com.ynswet.system.sc.encryption.EncryptionBean">
+		<property name="keySize" value="1024"></property>
+		<property name="algorithom" value="RSA/ECB/PKCS1Padding"></property>
+	</bean>
+
+
+	<!-- 会话ID生成器 -->
+	<bean id="sessionIdGenerator"
+		class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator" />
+
+	<!-- 会话Cookie模板 -->
+	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="sid" />
+		<property name="httpOnly" value="true" />
+		<property name="maxAge" value="-1" />
+	</bean>
+
+	<!-- 会话DAO -->
+	<bean id="sessionDAO"
+		class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+		<property name="activeSessionsCacheName" value="shiroActiveSessionCache" />
+		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+
+	<!-- 会话验证调度器 -->
+	<bean id="sessionValidationScheduler"
+		class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
+		<property name="sessionValidationInterval" value="3600000" />
+		<property name="sessionManager" ref="sessionManager" />
+	</bean>
+
+	<!-- 会话管理器 -->
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<property name="globalSessionTimeout" value="1800000" />
+		<property name="deleteInvalidSessions" value="true" />
+		<property name="sessionValidationSchedulerEnabled" value="true" />
+		<property name="sessionValidationScheduler" ref="sessionValidationScheduler" />
+		<property name="sessionDAO" ref="sessionDAO" />
+		<property name="sessionIdCookieEnabled" value="true" />
+		<property name="sessionIdCookie" ref="sessionIdCookie" />
+	</bean>
+
+	<!-- credential matcher config -->
+	<bean id="credentialHashMatcher"
+		class="com.ynswet.system.sc.credentials.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="MD5" />
+		<property name="hashIterations" value="2" />
+		<property name="storedCredentialsHexEncoded" value="true" />
+	</bean>
+
+	<!-- 自定义shiro的realm数据库身份验证 -->
+	<bean id="jdbcAuthenticationRealm" class="com.ynswet.system.sc.realm.JdbcAuthenticationRealm">
+		<property name="name" value="shiroAuthorizationCache" />
+		<property name="credentialsMatcher" ref="credentialHashMatcher" />
+		<!-- 授权缓存名称 -->
+		<property name="authorizationCachingEnabled" value="true" />
+		<!-- 启用认证缓存，当用户登录一次后将不在查询数据库来获取用户信息，直接在从缓存获取 -->
+		<property name="authenticationCachingEnabled" value="true" />
+		<property name="authenticationCacheName" value="shiroAuthenticationCache" />
+		<property name="defaultPermissionString" value="security:change-password,security:index" />
+	</bean>
+
+	<!-- shiro 的缓存管理,使用spring的ehCacheManagerFactory, 操作spring缓存工厂来及时更新shiro的缓存管理
+		ehCacheManagerFactory对象在applicationContext-core.xml中配置 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManager" ref="ehCacheManagerFactory" />
+	</bean>
+
+	<bean id="cacheHelper" class="com.ynswet.system.sc.util.AuthorizationCacheHelper" />
+
+	<!-- 使用默认的WebSecurityManager -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- realm认证和授权,从数据库读取资源 -->
+		<property name="realm" ref="jdbcAuthenticationRealm" />
+		<!-- cacheManager,集合spring缓存工厂 -->
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="sessionManager" ref="sessionManager" />
+	</bean>
+
+
+	<!-- 自定义对 shiro的连接约束,结合shiroSecurityFilter实现动态获取资源 -->
+	<bean id="chainDefinitionSectionMetaSource"
+		class="com.ynswet.system.sc.filter.ChainDefinitionSectionMetaSource">
+		<!-- 默认的连接配置 -->
+		<property name="filterChainDefinitions">
+			<value>
+				/login = captchaAuthc
+				/logout = logout
+				/wordbook = anon
+				/user = anon
+				/changePassword = perms[security:change-password]
+			</value>
+		</property>
+	</bean>
+
+	<bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+		<property name="redirectUrl" value="/login" />
+	</bean>
+
+	<!-- 将shiro与spring集合 自定义对 shiro的连接约束,结合shiroSecurityFilter实现动态获取资源 -->
+	<bean id="shiroSecurityFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="filters">
+			<util:map>
+				<entry key="session">
+					<bean class="com.ynswet.system.sc.filter.SessionFilter" />
+				</entry>
+				<entry key="captchaAuthc">
+					<bean class="com.ynswet.system.sc.filter.CaptchaFormAuthenticationFilter">
+						<property name="eb" ref="encryptionBean" />
+						<property name="allowLoginNum" value="1000" />
+						<property name="cookiePath" value="/springmvc" />
+						<property name="cookieDomain" value="localhost" />
+					</bean>
+				</entry>
+				<entry key="anyRole">
+					<bean class="com.ynswet.system.sc.filter.AnyRolesFilter" />
+				</entry>
+			</util:map>
+		</property>
+		<!-- shiro的核心安全接口 -->
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login" />
+		<property name="successUrl" value="/index" />
+		<!-- 没有权限要跳转的链接 -->
+		<property name="unauthorizedUrl" value="/unauthorized" />
+		<!-- shiro连接约束配置,在这里使用自定义的动态获取资源类 -->
+		<property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
+
+	</bean>
+
+	<!-- shiro为集成spring -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<!-- 启用shiro为spring配置的bean注释，只运行在lifecycleBeanProcessor之后 -->
+	<bean id="annotationProxy"
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<!-- 启用shrio授权注解拦截方式 -->
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<!--<import resource="redis-config.xml"/> -->
+
+</beans>

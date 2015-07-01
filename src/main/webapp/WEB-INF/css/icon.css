@@ -1,0 +1,82 @@
+/**
+ *Button css
+ */
+.btn-search{
+    background-image: url(images/btn/search.png) !important;
+}
+.btn-save{
+    background-image: url(images/btn/save.png) !important;
+}
+.btn-ok{
+    background-image: url(images/btn/ok.png) !important;
+}
+.btn-cancel{
+    background-image: url(images/btn/cancel.png) !important;
+}
+.btn-del{
+    background-image: url(images/btn/delete.png) !important;
+}
+.btn-push{
+    background-image: url(images/btn/push.png) !important;
+}
+.btn-reset{
+    background-image: url(images/btn/delete.png) !important;
+}
+.btn-seldel{
+    background-image: url(images/btn/seldel.png) !important;
+}
+.btn-add{
+    background-image: url(images/btn/add.png) !important;
+}
+.btn-import{
+    background-image: url(images/btn/import.png) !important;
+}
+.btn-edit{
+    background-image: url(images/btn/edit.png) !important;
+}
+.btn-refresh{
+    background-image: url(images/btn/refresh.gif) !important;
+}
+.btn-excel{
+    background-image: url(images/btn/excel.png) !important;
+}
+.btn-prev{
+    background-image: url(images/btn/prev.png) !important;
+}
+.btn-next{
+    background-image: url(images/btn/next.png) !important;
+}
+.accept-col{
+    background-image: url(images/btn/accept.png) !important;
+}
+.stop-col{
+    background-image: url(images/btn/stop.png) !important;
+}
+
+.btn-detail{
+    background-image: url(images/btn/detail.png) !important;
+}
+.btn-noteGo{
+    background-image: url(images/btn/note_go.png) !important;
+}
+.btn-yes{
+    background-image: url(images/btn/tick.png) !important;
+}
+.btn-no{
+    background-image: url(images/btn/cross.png) !important;
+}
+.btn-reset{
+    background-image: url(images/btn/arrow_undo.png) !important;
+}
+.btn-dispatcher{
+    background-image: url(images/btn/dispather.png) !important;
+}
+.btn-printer{
+    background-image: url(images/btn/printer.png) !important;
+}
+.btn-map{
+    background-image: url(images/btn/map.png) !important;
+}
+.btn-upload2{
+    background-image: url(images/btn/upload2.png) !important;
+}

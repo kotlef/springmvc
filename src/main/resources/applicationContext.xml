@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/cache
+	  http://www.springframework.org/schema/cache/spring-cache.xsd
+      http://www.springframework.org/schema/jee
+      http://www.springframework.org/schema/jee/spring-jee.xsd
+      http://www.springframework.org/schema/util
+	  http://www.springframework.org/schema/util/spring-util.xsd
+	  http://www.springframework.org/schema/data/jpa
+      http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+	<description>Spring公共配置 </description>
+
+	<context:annotation-config />
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.ynswet">
+		<context:include-filter type="annotation"
+			expression="org.aspectj.lang.annotation.Aspect" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+	</context:component-scan>
+
+	<!-- 使用配置文件加载数据库配置 -->
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath*:application.properties" />
+
+	<!-- Using Apache DBCP2 Data Sources -->
+	<bean name="homecloudDs" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${homecloud.connection.driver_class}" />
+		<property name="username" value="${homecloud.connection.username}" />
+		<property name="password" value="${homecloud.connection.password}" />
+		<property name="url" value="${homecloud.connection.url}" />
+		<property name="maxIdle" value="${homecloud.maxIdle}" />
+		<property name="minIdle" value="${homecloud.minIdle}" />
+		<property name="initialSize" value="${homecloud.initialSize}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${homecloud.timeBetweenEvictionRunsMillis}" />
+		<property name="poolPreparedStatements" value="${homecloud.poolPreparedStatements}" />
+		<property name="maxOpenPreparedStatements" value="${homecloud.maxOpenPreparedStatements}" />
+		<property name="removeAbandonedTimeout" value="${homecloud.removeAbandonedTimeout}" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+		<property name="testOnBorrow" value="${homecloud.testOnBorrow}" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+		<property name="testOnReturn" value="${homecloud.testOnReturn}" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于 timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+		<property name="testWhileIdle" value="${homecloud.testWhileIdle}" />
+		<!-- 用来检测连接是否有效的sql，要求是一个查询语句,如果validationQuery为 null，testOnBorrow、testOnReturn、testWhileIdle都不起其作用。 -->
+		<property name="validationQuery" value="${homecloud.validationQuery}" />
+	</bean>
+
+	<!-- Configure a JPA vendor adapter -->
+	<bean id="hibernateJpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="MYSQL"></property>
+		<property name="showSql" value="${homecloud.show_sql}" />
+		<property name="generateDdl" value="${homecloud.generateDdl}" />
+		<property name="databasePlatform" value="${homecloud.dialect}" />
+	</bean>
+
+	<!-- Jpa Entity Manager 配置 -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="homecloudDs" />
+		<!-- 设置hibernate方言 可以使用java类动态生成 -->
+		<property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+		<property name="persistenceUnitName" value="homecloud" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="spring.jpa.hibernate.naming_strategy">org.hibernate.cfg.EJB3NamingStrategy</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Configure the transaction manager bean -->
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<!-- Enable annotation driven transaction management -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!-- Configure Spring Data JPA and set the base package of the repository
+		interfaces -->
+	<jpa:repositories base-package="com.ynswet.homecloud.alarm.repository"
+		transaction-manager-ref="transactionManager"
+		entity-manager-factory-ref="entityManagerFactory" />
+	<jpa:repositories base-package="com.ynswet.homecloud.business.repository"
+		transaction-manager-ref="transactionManager"
+		entity-manager-factory-ref="entityManagerFactory" />
+	<jpa:repositories base-package="com.ynswet.homecloud.common.repository"
+		transaction-manager-ref="transactionManager"
+		entity-manager-factory-ref="entityManagerFactory" />
+	<jpa:repositories base-package="com.ynswet.system.sc.repository"
+		transaction-manager-ref="transactionManager"
+		entity-manager-factory-ref="entityManagerFactory" />
+
+	<!-- JSR303 Validator定义 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+
+	<!-- spring对ehcache的缓存工厂支持 -->
+	<bean id="ehCacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="shared" value="true"></property>
+	</bean>
+
+	<!-- spring对ehcache的缓存管理 -->
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManagerFactory"></property>
+	</bean>
+
+
+	<!-- 使用缓存annotation 配置 -->
+	<cache:annotation-driven cache-manager="ehCacheManager" />
+
+	<import resource="classpath*:spring-shiro.xml" />
+
+</beans>

@@ -97,8 +97,8 @@
 			if (row){
 				$.messager.confirm('确定','继续删除该角色吗?',function(r){
 					if (r){
-
-						Swet.request.delete(Swet.server.cloud+"/role",{id:row.id},'DELETE');
+						Swet.request.delete(Swet.server.cloud+"/role/"+row.roleId);
+						$('#dg').datagrid('reload');
 					}
 				});
 			}

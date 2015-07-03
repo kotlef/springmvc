@@ -72,17 +72,16 @@ public class RoleRest extends BaseRest{
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public SingleJsonStructure save(@ModelAttribute("role") Role role){
-		role.setRoleId(1);
-		role.setHomepageId(1);
+
+		role.setHomepageId(3);
 
 		role.setModifyTime(DateTimeUtils.getSystemCurrentTimeMillis());
 
 		role.setCreateTime(DateTimeUtils.getSystemCurrentTimeMillis());
 
 		role.setCreateTime(DateTimeUtils.getSystemCurrentTimeMillis());
-		role.setStatus("0");
 
-		System.out.println(role.toString());
+		role.setStatus("0");
 
 		roleRepository.saveAndFlush(role);
 		SingleJsonStructure json = new SingleJsonStructure();

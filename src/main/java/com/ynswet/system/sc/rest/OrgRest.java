@@ -1,4 +1,4 @@
-/**       
+/**
  * @Title: OrgRest.java
  * @Package com.ynswet.homecloud.common.rest
  * @Description: TODO
@@ -6,7 +6,7 @@
  * @date 2015年5月14日 下午4:40:13
  * @version V1.0  
  * <p>Copyright: Copyright (c) 2015</p>
- * <p>Company:广州合光信息科技有限公司</p>      
+ * <p>Company:广州合光信息科技有限公司</p>
  */
 package com.ynswet.system.sc.rest;
 
@@ -46,22 +46,22 @@ import com.ynswet.system.sc.service.OrgService;
 @RestController
 @RequestMapping("/org")
 public class OrgRest extends BaseRest{
-	
+
 	@Autowired
 	private OrgRepository orgRepository;
-	
+
 	@Autowired
 	private OrgService orgService;
-	
+
 	/**
-	 * url:/ynlxcloud/org
+	 * url:/springmvc/org
 	 * 函数功能说明:保存组织
-	 * @author 李玉鹏 
+	 * @author 李玉鹏
 	 * @date 2015年5月14日
 	 * 修改者名字 修改日期
 	 * 修改内容
 	 * @param @param org
-	 * @param @return    
+	 * @param @return   
 	 * @return SingleJsonStructure   
 	 * @throws
 	 */
@@ -73,16 +73,16 @@ public class OrgRest extends BaseRest{
 		json.setMsg("保存成功！");
 		return json;
 	}
-	
+
 	/**
-	 * url:/ynlxcloud/org/{orgid}
+	 * url:/springmvc/org/{orgid}
 	 * 函数功能说明
-	 * @author 李玉鹏 
+	 * @author 李玉鹏
 	 * @date 2015年5月14日
 	 * 修改者名字 修改日期
 	 * 修改内容
 	 * @param @param org
-	 * @param @return    
+	 * @param @return   
 	 * @return SingleJsonStructure   
 	 * @throws
 	 */
@@ -96,16 +96,16 @@ public class OrgRest extends BaseRest{
 		json.setMsg("更新成功！");
 		return json;
 	}
-	
+
 	/**
-	 * url:/ynlxcloud/org/{orgids}
+	 * url:/springmvc/org/{orgids}
 	 * 函数功能说明:删除组织
-	 * @author 李玉鹏 
+	 * @author 李玉鹏
 	 * @date 2015年5月14日
 	 * 修改者名字 修改日期
 	 * 修改内容
 	 * @param @param orgids
-	 * @param @return    
+	 * @param @return   
 	 * @return SingleJsonStructure   
 	 * @throws
 	 */
@@ -121,15 +121,15 @@ public class OrgRest extends BaseRest{
 		json.setMsg("删除成功！");
 		return json;
 	}
-	
+
 	/**
-	 * url:/ynlxcloud/org
+	 * url:/springmvc/org
 	 * 函数功能说明:查询所有的组织
-	 * @author 李玉鹏 
+	 * @author 李玉鹏
 	 * @date 2015年5月14日
 	 * 修改者名字 修改日期
 	 * 修改内容
-	 * @param @return    
+	 * @param @return   
 	 * @return ListJsonStructure<Org>   
 	 * @throws
 	 */
@@ -139,18 +139,18 @@ public class OrgRest extends BaseRest{
 		List<Org> list = orgRepository.findAll();
 		json.setRows(list);
 		return json;
-	}	
-	
+	}
+
 	/**
-	 * url:/ynlxcloud/org/toPage
+	 * url:/springmvc/org/toPage
 	 * 函数功能说明:分页查询所有的组织
-	 * @author 李玉鹏 
+	 * @author 李玉鹏
 	 * @date 2015年5月14日
 	 * 修改者名字 修改日期
 	 * 修改内容
 	 * @param @param page
 	 * @param @param rows
-	 * @param @return    
+	 * @param @return   
 	 * @return ListJsonStructure<Org>   
 	 * @throws
 	 */

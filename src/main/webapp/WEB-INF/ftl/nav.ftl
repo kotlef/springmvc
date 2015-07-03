@@ -92,7 +92,7 @@
 							<a href="#">修改密码</a>
 						</li>
                         <li>
-							<a href="/ynlxcloud/logout" target="_parent">退出</a>
+							<a href="/springmvc/logout" target="_parent">退出</a>
 						</li>
 					</ul>
   </div>
@@ -106,12 +106,12 @@
     <script src="common/json2.js"></script>
     <script type="text/javascript">
       function currentPage(homepageId){
-	      Cookies.set('homepageId', homepageId, { path: '/ynlxcloud' })
+	      Cookies.set('homepageId', homepageId, { path: '/springmvc' })
 	      $(".active").removeClass("active")
 	      $("#"+homepageId).addClass("active");
       }
       $(function() {
-      	 Cookies.remove("rId", { path: '/ynlxcloud' });
+      	 Cookies.remove("rId", { path: '/springmvc' });
       	 $.getJSON('./currentUserInfo',function(data){
       	 	window.localStorage.setItem('currentUserInfo',JSON.stringify(data));
       	 })

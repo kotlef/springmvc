@@ -116,8 +116,6 @@
 			<value>
 				/login = captchaAuthc
 				/logout = logout
-				/wordbook = anon
-				/user = anon
 				/changePassword = perms[security:change-password]
 			</value>
 		</property>

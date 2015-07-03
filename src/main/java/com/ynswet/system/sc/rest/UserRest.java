@@ -65,7 +65,7 @@ public class UserRest extends BaseRest{
 	private PasswordHelper passwordHelper;
 
 	/**
-	 * url：/ynlxcloud/user
+	 * url：/springmvc/user
 	 * 函数功能说明:添加用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -110,7 +110,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/user/{uid}
+	 * url:/springmvc/user/{uid}
 	 * 函数功能说明:更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -134,7 +134,7 @@ public class UserRest extends BaseRest{
 
 	}
 	/**
-	 * url:/ynlxcloud/user/{uids}
+	 * url:/springmvc/user/{uids}
 	 * 函数功能说明:删除用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -160,7 +160,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/user
+	 * url:/springmvc/user
 	 * 函数功能说明:查询所有的用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -179,7 +179,7 @@ public class UserRest extends BaseRest{
 
 	}
 	/**
-	 * url:/ynlxcloud/user/toPage
+	 * url:/springmvc/user/toPage
 	 * 函数功能说明:分页查询用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -204,7 +204,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/user/items/toPage
+	 * url:/springmvc/user/items/toPage
 	 * 函数功能说明:根据条件分页查询用户
 	 * @author 李玉鹏
 	 * @date 2015年5月25日
@@ -323,7 +323,7 @@ public class UserRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/user/checkEmail
+	 * url:/springmvc/user/checkEmail
 	 * 函数功能说明:检查用户邮箱唯一性
 	 * @author 李玉鹏 
 	 * @date 2015年5月27日
@@ -345,7 +345,7 @@ public class UserRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/user/checkCell
+	 * url:/springmvc/user/checkCell
 	 * 函数功能说明:检查用户联系手机唯一性
 	 * @author 李玉鹏 
 	 * @date 2015年5月27日
@@ -367,7 +367,7 @@ public class UserRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/user/checkIdNo
+	 * url:/springmvc/user/checkIdNo
 	 * 函数功能说明:检查用户证件号唯一性
 	 * @author 李玉鹏 
 	 * @date 2015年5月27日

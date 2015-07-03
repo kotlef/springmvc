@@ -59,7 +59,7 @@ public class RoleRest extends BaseRest{
 	private RoleRepository roleRepository;
 
 	/**
-	 * url:/ynlxcloud/role
+	 * url:/springmvc/role
 	 * 函数功能说明:保存角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -90,7 +90,7 @@ public class RoleRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/role/{roleId}
+	 * url:/springmvc/role/{roleId}
 	 * 函数功能说明:修改角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -114,7 +114,7 @@ public class RoleRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/role/{roleIds}
+	 * url:/springmvc/role/{roleIds}
 	 * 函数功能说明:删除角色
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -152,7 +152,7 @@ public class RoleRest extends BaseRest{
 
 
 	/**
-	 * url:/ynlxcloud/role
+	 * url:/springmvc/role
 	 * 函数功能说明:查询所有的角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -172,7 +172,7 @@ public class RoleRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/role/toPage
+	 * url:/springmvc/role/toPage
 	 * 函数功能说明:分页查询角色
 	 * @author 李玉鹏
 	 * @date 2015年5月14日

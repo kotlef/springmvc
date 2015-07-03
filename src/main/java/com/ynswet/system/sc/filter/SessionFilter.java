@@ -25,7 +25,7 @@ public class SessionFilter extends UserFilter {
 
         // 判断session里是否有用户信息
 		if (isAjax(request, response)) {
-			String login="http://" + request.getLocalAddr()+":"+request.getLocalPort()+ "/ynlxcloud/login";
+			String login="http://" + request.getLocalAddr()+":"+request.getLocalPort()+ "/springmvc/login";
 			Map<String, Object> result = new HashMap<String, Object>();
 			result.put("success", false);
 			result.put("msg", "SessionException");

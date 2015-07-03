@@ -56,7 +56,7 @@ public class OrggroupRest extends BaseRest{
 	private OrggroupRepository orggroupRepository;
 	
 	/**
-	 * url：/ynlxcloud/orggroup
+	 * url：/springmvc/orggroup
 	 * 函数功能说明:保存机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月13日
@@ -76,7 +76,7 @@ public class OrggroupRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url：/ynlxcloud/orggroup/{orggroupId}
+	 * url：/springmvc/orggroup/{orggroupId}
 	 * 函数功能说明:修改机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月25日
@@ -102,7 +102,7 @@ public class OrggroupRest extends BaseRest{
 
 	}
 	/**
-	 * url：/ynlxcloud/orggroup/{orggroupIds}
+	 * url：/springmvc/orggroup/{orggroupIds}
 	 * 函数功能说明:删除机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -126,7 +126,7 @@ public class OrggroupRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url：/ynlxcloud/orggroup
+	 * url：/springmvc/orggroup
 	 * 函数功能说明:查询所有的机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月13日
@@ -146,7 +146,7 @@ public class OrggroupRest extends BaseRest{
 	}
 	
 	/**
-	 * url：/ynlxcloud/orggroup/toPage
+	 * url：/springmvc/orggroup/toPage
 	 * 函数功能说明:分页查询所有的机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日

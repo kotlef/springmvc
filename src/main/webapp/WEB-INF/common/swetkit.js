@@ -18,7 +18,7 @@ Swet.server.mainArchive=Swet.server.url+"/ynlxmainarchive";
 Swet.server.alarmCenter=Swet.server.url+"/ynlxalarmcenter";
 Swet.server.business=Swet.server.url+"/ynlxbusiness";
 Swet.server.productRun=Swet.server.url+"/ynlxproductrun";
-Swet.server.cloud=Swet.server.url+"/ynlxcloud";
+Swet.server.cloud=Swet.server.url+"/springmvc";
 
 /**
  * 定义字典

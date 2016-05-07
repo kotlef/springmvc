@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>员工管理</title>
+	<script type="text/javascript" src="main.js"></script>
+  </head>
+  
+  <body style="width:100%;height:100%;" >
+      	<div id="layout_emp" class="easyui-layout" fit="true" >
+	    <div data-options="region:'center'" style="padding:5px;background:#eee;">
+<!-- 员工列表 -->
+	    	 <table id="datagrid_list_emp" fit="true"></table>
+<!-- 工具栏开始 -->	    
+	    	 <div id="tb_emp">
+	    	 	<table style="cellpadding:0;cellspacing:0;width:100%;padding:0px">
+	    	 		<tr>
+	    	 			<td style="text-align:left">
+	    	 				<input id="searchbox_emp" class="easyui-searchbox" style="width:300px;"
+								data-options="searcher:doSearch,prompt:'请输入员工姓名或联系电话或员工工号查找' "></input>
+<!-- 								<div id="menu_searcher_emp">
+									<div data-options="name:'empName'">员工姓名</div>
+									<div data-options="name:'empCode'">员工工号</div>
+									<div data-options="name:'empType'">员工类型</div>
+								</div> -->
+	    	 			</td>
+	    	 			<td style="text-align:right">
+	    	 				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="openAdd();">添加</a>
+							<a href="javascript:void(0)" class="easyui-confirmbutton" data-options="fun:deleteRows,iconCls:'icon-remove',plain:true" >批量删除</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true " onclick="detailed()">浏览</a>
+	    	 			</td>
+	    	 		</tr>
+	    	 	</table>
+			</div>
+	    </div>   
+	</div>  
+  	
+<!-- 添加员工开始 -->
+    <div id="dialog_add_emp" class="easyui-dialog"
+    	stytle="height:260px;width:650px;padding:10px 20px"
+    	data-options="iconCls:'icon-add',closed:true,resizable:false,modal:true,buttons:'#dlg-buttons',onClose:clearDate ">
+    	<form id="form_add_emp" method="post" >
+			<fieldset>
+			<legend><strong>基本信息</strong></legend> 
+	    		<table cellspacing="5">
+	    			<tr>
+	    				<td><label>员工工号</label></td>
+	    				<td><input class="easyui-textbox" data-options="required:true,prompt:'由数字0-9组成',validType:['number','remote[checkEmpCodeUrl,checkempCode]'],novalidate:false " id="txb_add_emCode" name="empCode" style="width:140px;"></td>
+	    				<td><label>工号密码</label></td>
+	    				<td><input class="easyui-textbox" type="password" id="txb_add_emp_empPassword" name="empPassword" style="width:140px;"></td>
+	    				<td><label>员工姓名</label></td>
+	    				<td><input class="easyui-textbox" required="true" type="text" id="dtb_add_userName" name="userName" style="width:140px;"></td>
+	    				<td><label>性别</label></td>
+	    				<td>
+		    				<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" id="cmb_add_gender" name="gender" style="width:140px;" />
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td><label>证件类型：</label></td>
+		          		<td><input name="idType" id="cmb_add_idType"  data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false" class="easyui-combobox" required> </td>
+		          		<td><label>证件号码：</label></td>
+		          		<td><input id="cmb_add_idNo" name="idNo" class="easyui-textbox " missingMessage="不能为空"  data-options="required:true"> </td>
+	    				<td><label>学历</label></td>
+	    				<td>
+		    				<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" id="txb_add_emp_education" name="education" style="width:140px;">
+	    				</td>
+	    				<td><label>血型</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" type="text" id="dtb_add_blood" name="blood" style="width:140px;">
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td><label>联系电话</label></td>
+	    				<td><input class="easyui-numberbox" required="true" id="numb_add_cell" name="cell" style="width:140px;"></td>
+	    				<td><label>备用电话</label></td>
+	    				<td><input class="easyui-numberbox" data-options="validType:'mobile'" required="true" name="cell2" id ="hd_add_emp_cell2" style="width:140px;"></td>
+	    				<td><label>类型</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" data-options="editable:false" required="true" panelHeight="auto" id="cmb_add_empType" name="empType" style="width:140px;">
+	    				</td>
+	    				<td><label>岗级</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" id="cmb_add_emp_postRank" name="postRank" style="width:140px;">
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<!-- <td><label>上级领导</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" panelHeight="auto" required="true" id="cmb_add_emp_parentId" name="parentId" style="width:140px;">
+	    				</td> -->
+	    				<td><label>邮箱</label></td>
+	    				<td><input class="easyui-textbox" data-options="validType:'email'" required="true" id="dtb_add_email" name="email" style="width:140px;"></td>
+	    				<td><label>状态</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" id="cmb_add_status" name="status" style="width:140px;">
+	    				</td>
+	    				<td><label>婚姻情况</label></td>
+	    				<td>
+	    					<input class="easyui-combobox" data-options="editable:false" required="true" panelHeight="auto" id="txb_add_marriage" name="marriage" style="width:140px;">
+	    				</td>
+	    			</tr>
+	    		</table>
+	    	</fieldset>
+	    	<fieldset>
+			<legend><strong>其他信息</strong></legend> 
+	    		<table cellspacing="5">
+	    			<tr>
+	    				<td><label>生日</label></td>
+			          	<td><input class="easyui-datebox validatebox" data-options="validType:'date',editable:false,onChange:setGraduationDate " name="birthdate" id="birthdate" currentText="Today" style="width:140px;"></td>
+	    				<td><label>毕业学校</label></td>
+		          		<td><input class="easyui-textbox" id="gradSchool"  name="gradSchool" style="width:140px;"></td>
+	    				<td><label>毕业时间</label></td>
+		          		<td><input class="easyui-datebox validatebox" id="graduationDate" name="graduationDate" data-options="validType:'date', currentText:'Today',editable:false " style="width:140px;"></td>
+			          	<td><label>专业</label></td>
+		              	<td><input class="easyui-textbox" id="major"  name="major" style="width:140px;"></td>
+	    			</tr>
+	    			<tr>
+	    				<td><label>籍贯</label></td>
+			          	<td><input class="easyui-textbox" name="birthPlace" id="birthPlace" style="width:140px;"></td>
+	    				<td><label>户籍地址</label></td>
+		          	  	<td><input class="easyui-textbox" id="addr1"  name="addr1" style="width:140px;"></td>
+	    				<td><label>现居住址</label></td>
+		          		<td><input class="easyui-textbox" id="addr2"  name="addr2" style="width:140px;"></td>
+			    		<td><label>民族</label></td>
+		          		<td><input class="easyui-combobox" id="nationality" name="nationality" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/NATIONALITY',method:'GET'"></td>
+		          		
+	    			</tr>
+	    			<tr>
+	    						          
+	    				<td><label>入职时间</label></td>
+	    				<td><input class="easyui-datebox" data-options="validType:'date',editable:false,onChange:setDepartDate " id="dtb_add_emp_entryDate" name="entryDate" style="width:140px;"></td>
+	    				<td><label>离职时间</label></td>
+	    				<td><input class="easyui-datebox" data-options="validType:'date',editable:false " id="dtb_add_emp_departDate" name="departDate" style="width:140px;"></td>
+	    				<td><label>QQ号</label></td>
+		          		<td><input class="easyui-textbox validatebox" id="qq" name="qq" validType="number" style="width:140px;"></td>
+	    			</tr>
+	    			<tr>
+	    				<td>个人简历</td>
+	    				<td colspan = "7">
+	    					<input class="easyui-textbox" style="width:710px; height:80px;" data-options="multiline:true" id="txb_add_emp_resume" name="resume"  >
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td>备注</td>
+	    				<td colspan = "7">
+	    					<input class="easyui-textbox" style="width:710px; height:40px;" data-options="multiline:true" name="note">
+	    				</td>
+	    			</tr>
+	    			<tr>
+	    				<td colspan="8" style="text-align:right">
+	    					<a href="javascript:void(0)" class="easyui-linkbutton c6" id="btn_save_emp" iconCls="icon-ok" onclick="saveEmp();" >保 &nbsp;存</a>
+	    					<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-cancel" onclick="closeForm()">取&nbsp;消</a>
+	    				</td>
+	    			</tr>
+	    		</table>
+    		</fieldset>
+ 
+    	</form>
+    </div>
+<!-- 表格添加右键菜单开始 -->
+    <div id="menu_list_emp" class="easyui-menu" style="width: 50px; display: none;">
+    	<div data-options="iconCls:'icon-edit'" onclick="saveOrUpdateEmp(2);">修改</div>
+    	<div data-options="iconCls:'icon-remove'" onclick="deleteEmp();">删除</div>
+    </div>
+    
+<!-- ---浏览员工详细信息页面：dialog -->
+    <div id="dialog_detail_emp" class="easyui-dialog" title="浏览用户资料" width="auto" closed="true" style="width:980px;height:440px" modal="true" resizable="true" buttons="#detileButton">
+    	<div class="easyui-panel"  id="panel_empDetail" style="width:100%;height:100%" data-options="fit:true,border:false"></div>
+    </div> 
+    <div id="detileButton">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="closeDetile()" plain="false">关闭</a> 
+    </div>   
+  </body>
+</html>

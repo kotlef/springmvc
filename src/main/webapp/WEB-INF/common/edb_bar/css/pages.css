@@ -1,0 +1,363 @@
+body {
+	margin:0px; 
+}
+
+
+.barBox {
+	margin: 5px;
+}
+
+.inp1 {
+	width:195px;
+	height:20px;
+	overflow: hidden;
+	padding-top: 4px;
+}
+
+.fl {
+	height:3px;
+	clear: both;
+}
+
+.softphone_timer {
+	float: left;
+	font-size: 13px;	
+	padding-left: 3px;
+}
+
+.clear10{
+	height:10px;
+	overflow: hidden;
+	clear: both;
+}
+
+.fr {
+	float: right;
+}
+
+img {
+	border:0px;
+}
+
+.clear5{
+	height:5px;
+	overflow: hidden;
+	clear: both;
+}
+
+.clear2{
+	height:2px;
+	overflow: hidden;
+	clear: both;
+}
+
+.clear1{
+	height:1px;
+	overflow: hidden;
+	clear: both;
+}
+
+a.DialEnable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:none;
+	background-image: url(../imgs/dialoutEnable.png);
+	background-position: 0px 0px;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.DialEnable:hover {
+	background-position: -74px 0px;
+}
+
+a.DialDisable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+	display:none;
+	margin-left:0px;
+	background-image: url(../imgs/dialoutDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HangupEnable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/hangupEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HangupEnable:hover {
+	background-position: -74px 0px;
+}
+
+a.HangupDisable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/hangupDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HoldEnable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/holdEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HoldEnable:hover {
+	background-position: -74px 0px;
+}
+
+a.HoldDisable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/holdDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HoldGetEnable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/holdGetEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.HoldGetEnable:hover {
+	background-position: -75px 0px;
+}
+
+a.TransferEnable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/transferEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.TransferEnable:hover {
+	background-position: -74px 0px;
+}
+
+a.TransferDisable {
+    TEXT-DECORATION: none;
+	width:73px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/transferDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.ConsultEnable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/consultEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.ConsultEnable:hover {
+	background-position: -75px 0px;
+}
+
+a.ConsultDisable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/consultDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.StopConsultEnable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/stopConsultEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.StopConsultEnable:hover {
+	background-position: -75px 0px;
+}
+
+a.ThreeWayCallEnable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/threeWayCallEnable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.ThreeWayCallEnable:hover {
+	background-position: -75px 0px;
+}
+
+a.ThreeWayCallDisable {
+    TEXT-DECORATION: none;
+	width:74px;
+	float:left;
+    height:29px;
+    margin-left:0px;
+	display:block;
+	background-image: url(../imgs/threeWayCallDisable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.IdleEnable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/idleEnable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.IdleDisable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/idleDisable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.IdleDisable:hover {
+	background-position: -50px 0px;	
+}
+
+a.BusyEnable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/busyEnable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.BusyDisable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/busyDisable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.BusyDisable:hover {
+	background-position: -50px 0px;	
+}
+
+a.RestEnable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/restEnable.png);
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.RestDisable {
+	TEXT-DECORATION: none;
+	width:49px;
+	float:left;
+    height:20px;
+    margin-left:11px;
+	display:block;
+	border-radius:8px 8px 8px 8px;
+	background-image: url(../imgs/restDisable.png);
+	background-position: 0px 0px;	
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+a.RestDisable:hover {
+	background-position: -50px 0px;	
+}
+
+.peerTimeState {
+	font-weight: bold;
+}

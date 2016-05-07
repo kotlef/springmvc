@@ -80,3 +80,48 @@
 .btn-upload2{
     background-image: url(images/btn/upload2.png) !important;
 }
+.btn-back{
+    background-image: url(images/btn/return.png) !important;
+}
+.icon-excel{
+	background-image: url(images/btn/return.png) !important;
+}
+.icon-return{
+	background-image: url(images/btn/return.png) !important;
+}
+.icon-pay{
+	background:url('images/btn/pay.png') no-repeat center center;
+}
+.icon-metro-search{
+	background:url('images/btn/search2.png') no-repeat center center;
+}
+.icon-metro-upload3{
+	background:url('images/btn/upload3.png') no-repeat center center;
+}
+.btn-ok-32{
+    background:url('images/btn/ok-32.png') no-repeat center center;
+}
+.icon-callback{
+    background:url('images/btn/callback.png') no-repeat center center;
+}
+.icon-user{
+    background:url('images/btn/user.png') no-repeat center center;
+}
+.icon-user-info-detail{
+    background:url('images/btn/user-info-detail.png') no-repeat center center;
+}
+.icon-customer{
+    background:url('images/btn/customers.png') no-repeat center center;
+}
+.icon-house{
+    background:url('images/btn/home.png') no-repeat center center;
+}
+.icon-order{
+    background:url('images/btn/order.png') no-repeat center center;
+}
+.icon-house-guide{
+    background:url('images/btn/house-guide.png') no-repeat center center;
+}
+.icon-order-audit-persion{
+    background:url('images/btn/persion.png') no-repeat center center;
+}

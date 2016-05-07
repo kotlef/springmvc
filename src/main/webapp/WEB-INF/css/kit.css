@@ -24,3 +24,40 @@
 	margin-bottom: 5px;
 	border-bottom: 1px solid #ccc;
 }
+
+.kit-grid-handle{
+	padding: 2px 0 2px 16px;
+    cursor:pointer;
+    background:url('icons/btn/repair.png') no-repeat center center;
+}
+
+.kit-btn-open{
+	background:url('icons/btn/tick.png') no-repeat center center;
+}
+.kit-btn-close{
+	background:url('icons/btn/stop.png') no-repeat center center;
+}
+
+.kit-btn-edit{
+    background:url('images/btn/edit.png') no-repeat center center;
+}
+
+.kit-btn-del{
+    background:url('images/btn/delete.png') no-repeat center center;
+}
+
+.kit-btn-add{
+    background:url('images/btn/add.png') no-repeat center center;
+}
+.kit-btn-view{
+    background:url('images/btn/search.png') no-repeat center center;
+}
+
+
+.kit-img-btn{
+    margin: 0 5px;
+    padding: 2px 0 2px 16px;
+    cursor:pointer;
+}
+
+

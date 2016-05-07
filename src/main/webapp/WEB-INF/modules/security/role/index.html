@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head>
+<title>角色管理</title>
+<script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="/ynlxcloud/css/icon.css">
+</head>
+<body>
+<div class="easyui-panel" title="角色管理" data-options="fit:true">
+	<table id="datagrid_list_role"></table>
+	<div id="btn_operate_role">
+		<table cellpadding="0" cellspacing="0" style="width:100%">
+	        <tr>
+	        	<td>
+	        	 	 <div id="searchbar">
+	        	 	 	<input id="searchBox_role" name="searchBox_role" class="easyui-searchbox" data-options="searcher:getRoleByParams,width:350, height: 26, prompt: '请输入角色编码或角色名称查找'" />
+			         </div>
+			    </td>
+	            <td style="text-align:right">
+	                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" onclick="saveRole()" plain="true">添加</a> 
+	        		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" onclick="deleteRoles()" plain="true">删除</a>
+	    		</td>
+	       </tr>
+	   </table>
+	</div>
+	
+	<div id="roleEdit" class="easyui-dialog" title="添加角色资料 " closed="true" modal="true" resizable="true" buttons="#EditButton"> 
+    	<form id="roleEditForm" method="post">
+    		<input type="hidden" id="roleId" name="roleId">
+    		<fieldset>
+    		<legend><strong>角色信息</strong></legend>
+			<table   height="auto" border="0" cellpadding="2px" cellspacing="0">
+       			 <tr>
+          			<td width="81" height="28" align="right">角色编码：</td>
+          			<td width="150" align="left"><input name="roleCode" id="roleCode" class="easyui-textbox validatebox" data-options="required:true,validType:'remote[checkRoleCodeUrl,checkRoleCode]'"> </td>
+          			<td width="81" align="right">角色名称：</td>
+          			<td width="150" align="left"><input id="roleName" name="roleName" class="easyui-textbox" required> </td> 
+        		</tr>
+        		<tr>
+          			<td align="right">角色类型：</td>
+          			<td align="left"><input id="roleType" name="roleType" class="easyui-combobox" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/ROLE_TYPE',method:'GET'" required> </td>
+          			<td height="25" align="right">主页：</td>
+          			<td align="left"><input name="homepageId" id="homepageId" class="easyui-combobox"  required> </td>
+        		</tr>
+        		<tr>
+           			<td align="right">状态：</td>
+	       			<td align="left"><input name="status" id="status" class="easyui-combobox" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/STATUS',method:'GET'" required> 
+              		</td>
+        		</tr>
+        		<tr>
+        			<td height="25" align="right">备注：</td>
+	       			<td colspan="3" align="left"><input style="width:375px" name="note" id="note" class="easyui-textbox"> </td>
+        		</tr>
+   			</table>
+    		</fieldset>
+    	</form>
+    </div>
+    
+    <div id="EditButton" style="text-align:right">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-ok" onclick="saveAndUpdateRole()">确定</a> 
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconcls="icon-cancel"onclick="cancelEdit()" plain="true">取消</a> 
+    </div>
+</div>
+</body>
+</html>

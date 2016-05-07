@@ -1,0 +1,59 @@
+#fm{
+	margin:0;
+	padding:10px 30px;
+}
+.ftitle{
+	font-size:14px;
+	font-weight:bold;
+	padding:5px 0;
+	margin-bottom:5px;
+	border-bottom:1px solid #ccc;
+}
+.ftitlenobold{
+	font-size:14px;
+	padding:5px 0;
+	margin-bottom:5px;
+	border-bottom:1px solid #ccc;
+}
+.fitem{
+	margin-bottom:5px;
+}
+.fitem label{
+	display:inline-block;
+	width:80px;
+}
+.fitem input{
+	width:160px;
+}
+.select-noback{
+	background-image:none;
+	background-color:transparent;
+	color:#000;
+}
+.toolbar{
+	background:#efefef;
+}
+.img-btn{
+    margin: 0 5px;
+    padding: 2px 0 2px 16px;
+    cursor:pointer;
+}
+#tip{
+	height:45px;
+	background-color:#fff;
+	padding-left:10px;
+	padding-right:10px;
+	border:1px solid #969696;
+	position:absolute;
+	font-size:12px;
+	right:10px;
+	bottom:50px;
+	border-radius:3px;
+	line-height:45px;
+}
+
+body{font-family: Microsoft YaHei,微软雅黑,Verdana,sans-serif,宋体;}
+.ErrorContent div{position:absolute;font-weight:bold;line-height:29px;text-align:center;}
+#Word{width:146px;height:29px;color:#A00;left:428px;top:119px;font-size:16px;}
+#Time{width:109px;height:30px;left:347px;top:235px;font-size:16px;color:#fff;}
+#Date{width:109px;height:30px;left:547px;top:235px;font-size:16px;color:#fff;}

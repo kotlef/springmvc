@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>更多菜单</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<script type="text/javascript" src="/ynlxcloud/jeasyui/extension/jquery.jdirk.js"></script>
+	<script type="text/javascript" src="index.js"></script>
+</head>
+<body>
+	<div id="mainLayout" class="easyui-layout" data-options="fit: true">
+		<div data-options="region: 'west', title: '菜单导航栏',
+		iconCls: 'icon-user-info-detail', split: true, minWidth: 250, maxWidth: 500" style="width: 250px; padding: 1px;">
+			<div id="navTabs_tools" class="tabs-tool">
+				<table>
+					<tr>
+						<td><a id="navMenu_refresh" onclick="refreshTreeMenu()"
+							   class="easyui-linkbutton easyui-tooltip" title="刷新该选项卡及其导航菜单"
+							   data-options="plain: true, iconCls: 'btn-refresh'"></a></td>
+					</tr>
+				</table>
+			</div>
+			<div id="navTabs" class="easyui-tabs" data-options="justified:true,pill:true,fit: true, border: true,
+			tools: '#navTabs_tools'">
+				<div data-options="title: '导航菜单', iconCls: 'icon-house', refreshable: false, selected: true">
+					<div id="westLayout" class="easyui-layout" data-options="fit: true">
+						<div data-options="region: 'center', border: false" style="border-bottom-width: 1px;">
+							<div id="westCenterLayout" class="easyui-layout" data-options="fit: true">
+								<div data-options="region: 'center', border: false">
+									<table id="tree_list_menu" class="easyui-tree"></table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div data-options="region: 'center'" style="padding: 1px;">
+			<div id="mainTabs" class="easyui-tabs" data-options="pill:true,tabWidth:120,fit: true, border: true,
+			showOption: true, enableNewTabMenu: true,  enableJumpTabMenu: true, onSelect: function (title, index) {  }">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

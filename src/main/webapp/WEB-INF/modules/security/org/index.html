@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>组织表</title>
+	<script type="text/javascript" src = "main.js"></script>
+  </head>
+  
+  <body>
+    <div id="layout_org" class="easyui-layout" fit="true">
+	    <div data-options="region:'center'" >
+	    	<table id="treegrid_list_org" fit="true"></table>
+	    	
+	    	<!-- 工具栏开始 -->	    
+	    	 <div id="tb_org">
+	    	 	<table style="cellpadding:0;cellspacing:0;width:100%;padding:0px">
+	    	 		<tr>
+	    	 			<td style="text-align:left">
+<!-- 条件查询 -->
+					    	<input id="searchbox_org" class="easyui-searchbox" style="width:300px"
+								data-options="searcher:doSearch,prompt:'请输入查询值',menu:'#menu_searcher_org'"></input>
+							<div id="menu_searcher_org">
+								<div data-options="name:'orgCode'">组织编号</div>
+								<div data-options="name:'orgName'">组织名称</div>
+							</div>
+	    	 			</td>
+	    	 			<td style="text-align:right">
+	    	 				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="openAdd();">添加</a>
+							<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="deleteRows();">删除</a> 
+	    	 			</td>
+	    	 		</tr>
+	    	 	</table>
+			</div>
+			<div id = "dlg_add_org" class="easyui-dialog"
+				stytle="height:260px;width:650px;padding:10px 20px"
+				data-options="iconCls:'icon-add',closed:true,resizable:false,modal:true,onClose:clearDate">
+				<form id="form_add_org">
+					<input type="hidden" name="id">
+					<input type="hidden" name="createTime">
+					<input type="hidden" name="modifyTime">
+					<input type="hidden" name="state">
+					<input type="hidden" name="treeLevel">
+					<table>
+						<tr>
+							<td>组织编码</td>
+							<td>
+								<input class="easyui-textbox" data-options="required:true,prompt:'由数字、英文字母组成' "  name="orgCode" id="textbox_add_orgCode" style="width:140px;">
+							</td>
+							<td>组织名称</td>
+							<td>
+								<input class="easyui-textbox" required="true" name="text" id="textbox_add_orgName" style="width:140px;">
+							</td>
+							<td>组织类型</td>
+							<td>
+								<input class="easyui-combobox" data-options="editable:false,required:true,method:'get',textField:'wordDisplay',
+										valueField:'wordValue',prompt:'请选择',url:Swet.server.mainArchive+'/wordbook/list/ORGGROUP_TYPE' " panelHeight="auto" name="orgType" id="cmb_add_orgType" style="width:140px;">
+							</td>
+						</tr>
+						<tr>
+							<td>所属机构</td>
+							<td>
+								<input class="easyui-combotree" data-options="method:'post',url:Swet.server.cloud+'/orggroup/find/parentId',valueField:'id',textField:'text',prompt:'请选择',required:true " name="orggroupId" id="combotree_add_orggroupId" style="width:140px;">
+							</td>
+  						
+							<td>所属组织</td>
+							<td>
+								<input class="easyui-combotree" name="parentId" id="combotree_add_parentId" style="width:140px;">
+							</td>
+							
+							<td>是否为服<br/>务站</td>
+							<td>
+								<input class="easyui-combobox" name="stationFlag" id="cmb_add_stationFlag" panelHeight="auto" style="width:140px;"
+										data-options="editable:false,required:true,method:'get',textField:'wordDisplay',valueField:'wordValue',prompt:'请选择',url:Swet.server.mainArchive+'/wordbook/list/STATION_FLAG' ">
+							</td>
+						</tr>
+						<tr>
+ 							<td>状态</td>
+							<td>
+								<input class="easyui-combobox" required="true" name="status" id="cmb_add_status" panelHeight="auto" style="width:140px;"
+										data-options="editable:false,method:'get',textField:'wordDisplay',valueField:'wordValue',prompt:'请选择',url:Swet.server.mainArchive+'/wordbook/list/STATUS'">
+							</td>
+							<td>启用日期</td>
+							<td>
+								<input id="dtb_openDate" class="easyui-datebox" data-options="editable:false,onChange:setCloseDate" name="openDate" style="width:140px;">
+							</td>
+
+							<td>停用日期</td>
+							<td>
+								<input id="dtb_closeDate" class="easyui-datebox" data-options="editable:false " name="closeDate" style="width:140px;">
+							</td>
+						</tr>
+						<tr>
+							<td>备注</td>
+							<td  colspan="5">
+								<input class="easyui-textbox" data-options="multiline:true" name="note" style="height:30px;width: 530px;">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" style="text-align:right">
+	    					<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" id="btn_save_org" onclick="saveOrg();" >保 &nbsp;存</a>
+	    					<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-cancel" onclick="closeForm()">取&nbsp;消</a>
+	    					</td>
+	    				</tr>
+					</table>
+				</form>
+			</div>
+	</div>
+	<!-- 表格添加右键菜单 -->	
+    <div id="menu_list_org" class="easyui-menu" style="width: 50px; display: none;">
+    	<div data-options="iconCls:'icon-add'" onclick="openAdd();">添加</div>
+    	<div data-options="iconCls:'icon-remove'" onclick="deleteRows();">删除</div>
+    </div> 
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<script type="text/javascript">
+$(function(){
+	
+	//省市区下拉框初始化1
+	$('#regionId').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,"",function(data){
+					$('#cityId').combobox('clear');
+					$('#districtId').combobox('clear');
+					$('#provinceId').combobox('loadData',data);
+					$('#provinceId').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	//省市区下拉框初始化2
+	$('#provinceId').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,"",function(data){
+					$('#districtId').combobox('clear');
+					$('#cityId').combobox('loadData',data);
+					$('#cityId').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	//省市区下拉框初始化3
+	$('#cityId').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,"",function(data){
+					$('#districtId').combobox('loadData',data);
+					$('#districtId').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	
+	//其他地址选择区域
+	$('#addr_region').combobox({
+		method:'GET',
+		url:Swet.server.mainArchive+'/region/'+0,
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,
+				"",
+				function(data){
+					$('#addr_city').combobox('clear');
+					$('#addr_district').combobox('clear');
+					$('#addr_community').combobox('clear');
+					$('#addr_province').combobox('loadData',data);
+					$('#addr_province').combobox('setValue', '');
+				}
+			);
+		},
+		onLoadSuccess: function(){
+			$('#addr_region').combobox("select","5");
+		}
+	});
+	//其他选择省份
+	$('#addr_province').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,
+				"",
+				function(data){
+					$('#addr_district').combobox('clear');
+					$('#addr_community').combobox('clear');
+					$('#addr_city').combobox('loadData',data);
+					$('#addr_city').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	//其他选择城市
+	$('#addr_city').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/region/"+record.regionId,
+				"",
+				function(data){
+					$('#addr_community').combobox('clear');
+					$('#addr_district').combobox('loadData',data);
+					$('#addr_district').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	//其他选择区
+	$('#addr_district').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+				Swet.server.mainArchive+"/community/searchByDistrictId/"+$('#addr_district').combobox('getValue'),
+				"",
+				function(data){
+					$('#addr_town').combobox('loadData',data);
+					$('#addr_town').combobox('setValue', '');
+				}
+			);
+		}
+	});
+	//其他信息添加界面(选择街道)
+	$('#addr_town').combobox({
+		onSelect: function(record){
+			Swet.request.get(
+					Swet.server.mainArchive+"/community/searchByTown",
+					{town:record.town},
+					function(data){
+						$('#addr_community').combobox('loadData',data);
+						$('#addr_community').combobox('setValue', '');
+					}
+				);
+			
+		},
+		onLoadSuccess:function(){
+			$.messager.progress('close');
+		}
+	});
+	
+})
+</script>
+<form id="form_edit_user" method="post">
+	<input type="hidden" id="uid" name="uid">
+	<table cellSpacing=10px cellPadding=0px align=center border=0 style="height:100%;width:90%;margin-top:7px;">
+		<tr>
+			<td align="center" colspan=10><div class="ftitle">关键信息(必填)</div></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">用户名称：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" name="userName" id="userName" class="easyui-textbox" required> </td>
+		    <td width="75" height="16" align="right">用户类型：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="userType" name="userType" data-options="value:'0',disabled:'true',valueField:'wordValue',prompt:'员工',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/USER_TYPE',method:'GET'" class="easyui-combobox" required> </td> 
+		    <td width="75" height="16" align="right">性别：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="gender" id="gender" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/GENDER',method:'GET'" class="easyui-combobox" required> </td>
+			<td width="75" height="16" align="right">血型：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="blood" id="blood" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/BLOOD',method:'GET'" class="easyui-combobox" required></td>
+		    <td width="75" height="16" align="right">婚姻：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="marriage" id="marriage" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/MARRIAGE',method:'GET'" class="easyui-combobox" required></td>
+		</tr>
+		<tr>
+		    <td width="60" height="16" align="right">证件类型：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" name="idType" id="idType" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/ID_TYPE',method:'GET'" class="easyui-combobox" required> </td>
+		    <td width="75" height="16" align="right">证件号码：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="idNo" name="idNo" class="easyui-textbox validatebox" missingMessage="不能为空"  data-options="required:true,validType:['idcard','remote[checkIdNoUrl,checkIdNo]']"> </td>
+		    <td width="75" height="16" align="right">学历：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%"  id="education" name="education" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/EDUCATION',method:'GET'" class="easyui-combobox" required></td>
+		    <td width="75" height="16" align="right">邮箱：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" name="email" id="email" class="easyui-textbox validatebox" missingMessage="不能为空"  data-options="required:true,validType:['email','remote[checkEmailUrl,checkEmail]']"> </td>
+		    <td width="75" height="16" align="right">状态：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="status" id="status" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/STATUS',method:'GET'" class="easyui-combobox" required> </td>
+		</tr>
+		<tr>
+		    <td width="60" height="16" align="right">联系手机：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" name="cell" id="cell" class="easyui-textbox validatebox" missingMessage="不能为空" data-options="prompt:'仅能有一个号码',required:true,validType:['mobile','remote[checkCellUrl,checkCell]']"> </td>
+		    <td width="75" height="16" align="right">备用手机：</td>
+		    <td width="600" height="16" align="left" colspan="5"><input name="cell2" id="cell2" style="width:100%" class="easyui-textbox validatebox" data-options="prompt:'可通过逗号填写多个',required:true,validType:'isTels'"></td>
+		</tr>
+		<tr>
+		    <td width="60" height="16" align="right">备注信息：</td>
+		    <td width="830" height="16" align="left" colspan="7">
+		    <textarea name="note" rows="11" cols="110" multiline="true" class="easyui-textbox" style="height:41px;width:100%"></textarea>
+		    </td>
+		</tr>
+		<tr>
+			<td align="center" colspan=10><div class="ftitle">员工信息(必填)</div></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">员工工号：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="empCode" id="empCode" class="easyui-textbox" required> </td>
+			<td width="60" height="16" align="right">岗级：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="postRank" id="postRank" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/POST_RANK',method:'GET'" class="easyui-combobox" required></td>
+			<td width="60" height="16" align="right">工号密码：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="empPassword" id="empPassword" class="easyui-textbox"> </td>
+			<td width="75" height="16" align="right">入职时间：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="entryDate" name="entryDate" class="easyui-datebox validatebox" data-options="validType:'date',editable:false, currentText:'Today'"></td>
+			<td width="60" height="16" align="right">离职时间：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="departDate" name="departDate" class="easyui-datebox validatebox" data-options="validType:'date',editable:false, currentText:'Today'"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">个人简历：</td>
+		    <td width="830" height="16" align="left" colspan="7">
+		    <textarea name="resume" rows="11" cols="110" multiline="true" class="easyui-textbox" style="height:41px;width:100%"></textarea>
+		    </td>
+		</tr>
+		<tr>
+		    <td align="center" colspan=10><div class="ftitle">其他信息(可选)</div></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">民族：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="nationality" name="nationality" class="easyui-combobox" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/NATIONALITY',method:'GET'"></td>
+		    <td width="75" height="16" align="right">籍贯：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="birthPlace" id="birthPlace" class="easyui-textbox"></td>
+			<td width="75" height="16" align="right">政治面貌：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="polityFace" name="polityFace" class="easyui-combobox" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/POLITYFACE',method:'GET'"></td>
+			<td width="75" height="16" align="right">宗教：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="religion" name="religion" class="easyui-combobox" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/RELIGION',method:'GET'"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">毕业学校：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="gradSchool" name="gradSchool" class="easyui-textbox"></td>
+		    <td width="75" height="16" align="right">专业：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="major" name="major" class="easyui-textbox"></td>
+		    <td width="75" height="16" align="right">毕业时间：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="graduationDate" name="graduationDate" class="easyui-datebox validatebox" data-options="validType:'date',editable:false, currentText:'Today'"></td>
+			<td width="75" height="16" align="right">职业：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="occupation" name="occupation" class="easyui-textbox"></td>
+		    <td width="75" height="16" align="right">职称：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="jobTitle" name="jobTitle" class="easyui-textbox"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">生日：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" name="birthdate" id="birthdate" class="easyui-datebox validatebox" data-options="validType:'date',editable:false, currentText:'Today'"></td>
+			<td width="75" height="16" align="right">体重：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="weight"  name="weight" class="easyui-numberbox" data-options="min:1,precision:2"></td>
+			<td width="75" height="16" align="right">身高：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="height" name="height" class="easyui-textbox validatebox" validType="number"></td>
+			<td width="75" height="16" align="right">QQ号：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="qq" name="qq" class="easyui-textbox validatebox" validType="number" data-options="validType:['isQQ','remote[checkCellUrl,checkCell]']"></td>
+		    <td width="75" height="16" align="right">微信号：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="weChat" name="weChat" class="easyui-textbox"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">联系电话：</td>
+		    <td width="365" height="16" align="left" colspan="3"><input name="tel" id="tel" class="easyui-textbox" style="width:100%"></td>
+		    <td width="75" height="16" align="right">传真：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="fax" name="fax" class="easyui-textbox"></td>
+			<td width="75" height="16" align="right">紧急联系人：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="urgLinkman" name="urgLinkman" class="easyui-textbox"></td>
+		    <td width="75" height="16" align="right">联系人手机：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="urgTel" name="urgTel" class="easyui-textbox validatebox" validType="mobile"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">户籍地址：</td>
+		    <td width="365" height="16" align="left" colspan="3"><input id="addr1" name="addr1" class="easyui-textbox" style="width:100%" data-options="editable:false,icons: [{iconCls:'icon-add',handler:addAddressAddr1}]"></td>
+			<td width="75" height="16" align="right">现居住地址：</td>
+		    <td width="365" height="16" align="left" colspan="3"><input id="addr2"  name="addr2" class="easyui-textbox" style="width:100%" data-options="editable:false,icons: [{iconCls:'icon-add',handler:addAddressAddr2}]"></td>
+		</tr>
+		<tr>
+		    <td width="60" height="16" align="right">通讯地址：</td>
+		    <td width="365" height="16" align="left" colspan="3"><input id="addr3" name="addr3" class="easyui-textbox" style="width:100%" data-options="editable:false,icons: [{iconCls:'icon-add',handler:addAddressAddr3}]"></td>
+		    <td width="75" height="16" align="right">通讯邮编：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="zip"  name="zip" class="easyui-textbox validatebox" validType="zipCode"></td>
+		    <td width="75" height="16" align="right">街道：</td>
+		    <td width="135" height="16" align="left"><input style="width:100%" id="town"  name="town" class="easyui-textbox"></td>
+		</tr>
+		<tr>
+			<td width="60" height="16" align="right">所在区域：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="regionId" name="regionId" data-options="valueField:'regionId',textField:'regionName',prompt:'请选择',editable:false,url:Swet.server.mainArchive+'/region/'+0,method:'GET'" class="easyui-combobox"></td>
+			<td width="75" height="16" align="right">省(直辖市)：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="provinceId" name="provinceId" class="easyui-combobox" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false"></td>
+			<td width="75" height="16" align="right">市：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="cityId" name="cityId" class="easyui-combobox" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false"></td>
+			<td width="75" height="16" align="right">区(县)：</td>
+			<td width="135" height="16" align="left"><input style="width:100%" id="districtId" name="districtId" class="easyui-combobox" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false"></td>
+		</tr>
+	</table> 
+</form>
+
+<div id="dialog_edit_addr" class="easyui-dialog" style="width:500px;height:220px;" data-options="modal:true,closed:true,buttons:'#dialog_edit_addr_buttons'">
+	<div id="panel_edit_addr" class="easyui-panel" data-options="fit:true,border:false">
+		<form id="form_edit_addr" method="post" >
+			<table cellpadding="5" style="height:100%" border="0">
+				<tr>
+					<td style="text-align:right">区域:</td>
+					<td style="width:150px"><input class="easyui-combobox" id="addr_region" style="width:100%" name="region" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false" ></input></td>
+					<td style="text-align:right">省(直辖市):</td>
+					<td style="width:150px"><input class="easyui-combobox" id="addr_province" style="width:100%" name="province" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false" ></input></td>
+				</tr>
+				<tr>
+					<td style="text-align:right">市:</td>
+					<td><input class="easyui-combobox" id="addr_city" style="width:100%" name="city" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false" ></input></td>
+					<td style="text-align:right">区(县):</td>
+					<td><input class="easyui-combobox" id="addr_district" style="width:100%" name="district" data-options="prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false" ></input></td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">街道(镇):</td>
+					<td colspan="3">
+						<input id="addr_town" name="town" class="easyui-combobox" style="width:100%" data-options="required:false,prompt:'请选择',valueField:'town',textField:'town',editable:false">
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:right;">小区:</td>
+					<td colspan="3"><input name="community" id="addr_community" style="width:100%" class="easyui-combobox" data-options="editable:false,prompt:'请选择',valueField:'communityId',textField:'communityNo'"></td>
+				</tr>
+			</table><input name="keyAddr" type="hidden"></input>
+		</form>
+	</div>
+</div>
+
+<div id="dialog_edit_addr_buttons">
+	<a href="javascript:void(0)" class="easyui-linkbutton c6"  onclick="saveAddress()" data-options="iconCls:'icon-save'">确定</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#dialog_edit_addr').dialog('close')" data-options="iconCls:'icon-cancel'">关闭</a>
+</div>

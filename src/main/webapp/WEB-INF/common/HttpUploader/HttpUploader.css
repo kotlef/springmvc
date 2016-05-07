@@ -1,0 +1,45 @@
+
+/*�ļ��б��*/
+#FilePostLister
+{
+    border: 1px solid #6FBCE2;
+    background-color: #FFFFFF;
+    font:12px/12px ����,������;/*��Ŀ�ⲿ��ʽ�ƻ�*/
+    width: 450px;
+    height:400px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+}
+/*ϸ��*/
+.Line{background-color: #E3E6EB;overflow: hidden;display: none;height: 1px;}
+/*�¹���*/
+div.UploaderItem{font-family: ������;font-size: 12px; background-color: #FFFFFF;width: 410px; height:65px; margin:5px 10px 0 20px; display:none;}
+div.top-space{margin:3px 0 0 0;}
+div.UploaderItemLeft{width:370px; float:left;}
+div.UploaderItemRight{width:30px; float:left;margin:3px 0 0 0;}
+div.UploaderItem div.FileName{font-weight: bold; overflow:hidden; width:364px;word-break: break-word; /* �ı��е��������ڶϿ� */ 
+		word-wrap: break-word; /* IE */ 
+		white-space: -moz-pre-wrap; /* Mozilla */ }
+/*������߿�*/
+div.UploaderItem div.ProcessBorder{padding: 0px;border: 1px solid #AAAAAA;width:364px;}
+div.UploaderItem div.Process{ height:12px; background-color: #A5DF16;width:0;/*width:200px;*/}
+/*�ϴ���Ϣ*/
+div.UploaderItem div.PostInf{color: #7A8F99;}
+/*��Ȱٷֱ�*/
+div.UploaderItem div.ProcessNum{width:30px; height:14px; line-height:14px; margin:3px 0 0 0;}
+div.UploaderItem a.Btn,div.UploaderItem a.Btn:hover{text-decoration: underline; color:#244281; height:12px;display:block;}
+/*�ϴ����*/
+#UploaderPanel{ background:#ECF9FF; border:solid 1px #4CA5D8;width:466px;}
+#UploaderPanel .header{ height:31px; line-height:31px; background:#67B9DC; border-bottom:solid 1px #FFF; color:White;padding:0 0 0 10px; font-weight:bold;}
+#UploaderPanel .toolbar{padding:20px 0 0 0;}
+#UploaderPanel .toolbar input{margin:0 0 0 7px;}
+#UploaderPanel .content{margin:17px 7px 15px 7px; background:#ECF9FF;}
+#UploaderPanel .footer{height:25px; line-height:25px; background:#D4EDF9; color:#7A8F99; border-top:solid 1px #B7DDF0;padding:5px;}
+/*���ļ��ϴ����*/
+#UpPanel{background:#ECF9FF; border:solid 1px #4CA5D8;width:300px;}
+#UpPanel a{color:#004477; text-decoration:none;margin:0 0 0 10px;}
+#UpPanel a.btn{ cursor:hand;}
+#UpPanel #UpBtnStop{display:none;}
+#UpPanel a.msg{color:#004477; text-decoration:none;}
+#UpPanel a.msg:hover{text-decoration:none;}
+#UpPanel a:hover{color:#004477; text-decoration:underline;}

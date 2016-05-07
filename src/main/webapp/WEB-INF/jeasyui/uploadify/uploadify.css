@@ -1,3 +1,59 @@
+/*
+Uploadify
+Copyright (c) 2012 Reactive Apps, Ronnie Garcia
+Released under the MIT License <http://www.opensource.org/licenses/mit-license.php> 
+*/
+
+.uploadify {
+	position: relative;
+	margin-bottom: 1em;
+}
+.uploadify-button {
+	background-color: #505050;
+	background-image: linear-gradient(bottom, #505050 0%, #707070 100%);
+	background-image: -o-linear-gradient(bottom, #505050 0%, #707070 100%);
+	background-image: -moz-linear-gradient(bottom, #505050 0%, #707070 100%);
+	background-image: -webkit-linear-gradient(bottom, #505050 0%, #707070 100%);
+	background-image: -ms-linear-gradient(bottom, #505050 0%, #707070 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #505050),
+		color-stop(1, #707070)
+	);
+	background-position: center top;
+	background-repeat: no-repeat;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	border: 2px solid #808080;
+	color: #FFF;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	width: 100%;
+}
+.uploadify:hover .uploadify-button {
+	background-color: #606060;
+	background-image: linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -o-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -moz-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -webkit-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -ms-linear-gradient(top, #606060 0%, #808080 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0, #606060),
+		color-stop(1, #808080)
+	);
+	background-position: center bottom;
+}
+.uploadify-button.disabled {
+	background-color: #D0D0D0;
+	color: #808080;
+}
 .uploadify-queue {
 	margin-bottom: 1em;
 }
@@ -33,34 +89,6 @@
 	background-color: #0099FF;
 	height: 3px;
 	width: 1px;
-}
-/*
-if lt IE 8:
-div#p {
-	display: inline;
-	margin-right: 0px;
-}
- */
-div.uploadify {
-	display: inline-block;
-	font-size: 12px;
-	margin: 0;
-}
-div.uploadify .uploadify-button {
-	border-radius: 0;
-	margin: 0 4px 0 10px;
-}
-div.uploadify > object {
-	left: 0px;
-}
-div#p {
-	display: inline-block;
-}
-.progressbar-value .progressbar-text.progressbar-text-success {
-	background-color: #15C23C;
-}
-.progressbar-value .progressbar-text.progressbar-text-error {
-	background-color: #F10257;
 }
 .icon-metro-search{
 	background:url('icon/search.png') no-repeat center center;

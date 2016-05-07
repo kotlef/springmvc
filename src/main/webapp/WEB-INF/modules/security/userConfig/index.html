@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html><head>
+<title>用户配置</title>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="subJs/userInfo.js"></script>
+<script type="text/javascript" src="subJs/postInfo.js"></script>
+<script type="text/javascript" src="subJs/resInfo.js"></script>
+</head>
+<body>
+<div id="indexWel">
+	<table align=center border=0 style="height:100%;width:90%;margin-top:15%;">
+			<tr>
+				<td>
+					<div id="pageSearchBox" style="text-align:center">
+						<input id="SearchBox" name="SearchBox" value="" class="easyui-searchbox textbox" data-options="searcher:getUser,width:210,height:33, prompt: '请输入关键字查找',menu:'#SearchBoxMenu'" />
+						<div id="SearchBoxMenu">
+							<div data-options="name:'cell',selected:true">联系电话</div>
+							<div data-options="name:'idNo'">证件号</div>
+							<div data-options="name:'email'">邮箱</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center">
+					<a id="pageAddButton" onclick="pageAdd()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-add',width:210,height:27,">新增</a>
+				<td>
+			</tr>
+		</table>
+</div>
+
+<div id="indexLayout" class="easyui-layout" fit="true">
+	<div id="indexCenter" data-options="region:'center'">
+		<div id="indexTabs" class="easyui-tabs" data-options="tabPosition:'left',headerWidth:0,fit:true,justified:true,border:false">
+		    <div>
+				<div id="indexUserInfo" class="easyui-panel" data-options="noheader:true,fit:true,border:false,href:'subHtml/userInfo.html'"></div>
+		    </div>
+		    <div>
+		    	<div id="indexPOSTInfo" class="easyui-panel" data-options="noheader:true,fit:true,border:false,href:'subHtml/postInfo.html'"></div>
+		    </div>
+		    <div>
+		    	<div id="indexRESInfo" class="easyui-panel" data-options="noheader:true,fit:true,border:false,href:'subHtml/resInfo.html'"></div>
+		    </div>
+		</div>
+	</div>
+	<div id="indexSouth" data-options="region:'south'" style="height:33px;background:#E0ECFF;">
+		<table style="width:100%">
+			<tr>
+				<td>
+					<div id="indexButton" style="text-align:right">
+						<a id="indexLastButton" onclick="indexLast()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-back'">上一步</a>
+						<a id="indexUpButton" onclick="indexUp()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-edit'">修改</a>
+						<a id="indexNextButton" onclick="indexNext()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'">下一步</a>
+						<a id="indexSaveButton" onclick="indexCommit()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-save'">保存</a>
+						<a id="indexFinalButton" onclick="indexFinal()" href="javascript:void(0)" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'">完成</a>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>

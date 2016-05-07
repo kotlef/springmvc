@@ -58,7 +58,7 @@
   <body>
   <div class="container-fluid">
  <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-9">
 					<div class="navbar-header">
 						 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">系统导航</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">四维E通</a>
 					</div>
@@ -66,14 +66,15 @@
 						<ul class="nav nav-pills">
 							<#list homepageList as hp>
 							<li  role="presentation" <#if homepageId==hp.homepageId> class="active" </#if> onclick='currentPage(${hp.homepageId})' id="${hp.homepageId}">
-								<a href="${hp.homepageUrl}" target="main">${hp.homepageName}</a>
+								<a href="${hp.homepageUrl}" target="fpage">${hp.homepageName}</a>
 							</li>
 							</#list>
 						</ul>
 						</div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
   		<ul class="nav navbar-nav navbar-right">
+  					<!--原来的更多菜单先注释
                    	 <li>
 		                   <div id="nav_more" class="nav_more">
 										<ul  id="more_menu_ul">
@@ -88,11 +89,15 @@
 										</ul>
 								</div>
 						</li>
-						<li>
-							<a href="#">修改密码</a>
+						-->
+						<li onclick='removeClassOnClick(this.id)' class="active" id='index_more_menu'>
+							<a href="modules/security/moreMenusTree/index.html" target="fpage">更多菜单</a>
+						</li>
+						<li onclick='removeClassOnClick(this.id)' class="active" id='index_system_set'>
+							<a href="modules/security/userInfo/index.html" target="fpage">我的资料</a>
 						</li>
                         <li>
-							<a href="/springmvc/logout" target="_parent">退出</a>
+							<a href="/ynlxcloud/logout" target="_parent" >退出</a>
 						</li>
 					</ul>
   </div>
@@ -106,15 +111,19 @@
     <script src="common/json2.js"></script>
     <script type="text/javascript">
       function currentPage(homepageId){
-	      Cookies.set('homepageId', homepageId, { path: '/springmvc' })
+      	var info=JSON.parse(window.localStorage.getItem("currentUserInfo"));
+		var currentUser=info.user;
+	      Cookies.set(currentUser.uid, homepageId, { path: '/ynlxcloud' })
 	      $(".active").removeClass("active")
 	      $("#"+homepageId).addClass("active");
       }
-      $(function() {
-      	 Cookies.remove("rId", { path: '/springmvc' });
-      	 $.getJSON('./currentUserInfo',function(data){
-      	 	window.localStorage.setItem('currentUserInfo',JSON.stringify(data));
-      	 })
+      function removeClassOnClick(id){
+	      $(".active").removeClass("active");
+	      $("#"+id).addClass("active");
+      }    
+   
+   	$(function() {
+      	 Cookies.remove("rId", { path: '/ynlxcloud' });
       })
     </script>
 </body>

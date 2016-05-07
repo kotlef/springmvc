@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>组织角色</title>
+	<script type="text/javascript" src = "main.js"></script>
+  </head>
+  
+  <body>
+  	<div class="easyui-layout" fit=true>
+        <div data-options="region:'west',split:false" title="组织" style="width:40%;">
+        	<table class="easyui-treegrid"
+                    data-options="url:Swet.server.cloud+ '/org/serchByParentId',method:'get',idField: 'id',
+					treeField: 'text',border:false,singleSelect:true,checkOnSelect:true,fit:true,fitColumns:true,onCheck:loadRole "
+					Style="width:50%">
+            	<thead>
+                    <tr>
+                        <th data-options="field:'text' " width="180">组织名称</th>
+                        <th data-options="field:'orgCode' " width="80">组织编号</th>
+                        <th data-options="field:'id' ,hidden:true " width="80">组织id</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div data-options="region:'center',iconCls:'icon-ok' ">
+			<div class="easyui-panel" 
+					 data-options="title:'角色',fit:true " >
+			
+					     <table id="datagrid_list_role" border="0" class="easyui-datagrid" data-options="pagination: true,pageSize:25,pageList:[15,25,35],url:Swet.server.cloud+'/role/findAllAndHpage/ToPage',method:'get',
+																							fit:true,fitColumns:true,
+					     																	toolbar:'#tool_save',idField:'roleId' ">
+			        		<thead >
+			        			<tr>
+			        				<th data-options="field:'roleName' " width="80">角色名称</th>
+			        				<th data-options="field:'roleId' ,hidden:true ">id</th>
+			        				<th data-options="field:'roleCode' " width="60">角色编码</th>
+			        				<th data-options="field:'homePageName' " width="80">主页</th>
+			        				<th data-options="field:'homepageUrl' " width="200">主页连接</th>
+			                        <th data-options="field:'cl', checkbox:true"></th>
+			        			</tr>
+			        		</thead>
+			        	</table>
+			</div>
+			<div style="text-align:right" id= "tool_save">
+				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="saveOrgrole();">保存</a>
+			</div>
+        </div>
+    </div>
+  </body>
+</html>

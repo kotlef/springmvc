@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">  
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">   
+<title>softphoneBar</title>
+<link href="../css/pages.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/icallcenter/global.js"></script>
+<script type="text/javascript" src="../hojo/hojo.js" djConfig="isDebug:false, parseOnLoad:false"></script>
+<script type="text/javascript">
+
+hojo.registerModulePath("icallcenter", "../js/icallcenter");
+hojo.require("icallcenter.logon");
+hojo.require("hojo.io.script");
+
+//电话条登录
+hojo.addOnLoad(function () {
+//    var loginName = icallcenter.logon.getUrlValue("loginName");
+//    var password = icallcenter.logon.getUrlValue("password");
+//    var extenType = icallcenter.logon.getUrlValue("loginType");
+//    var loginName = "8001@lxkj";
+//    var password = "8001";
+//    var extenType = "sip";//Local
+      
+      var data = window.location.href.split("?")[1];
+      var loginName = data.split("&")[0].split("=")[1];
+      var password = data.split("&")[1].split("=")[1];
+      var extenType = data.split("&")[2].split("=")[1];
+
+    icallcenter.logon.startLogon(loginName, password, extenType);
+
+});
+
+hojo.addOnWindowUnload(function (){
+	if(phone) {
+		//phone.destroy(true);
+	}
+});
+
+</script>
+</head>
+<body>
+
+		<div id="softphonebar" scrolling="no" style="position: relative;">
+			<div class="barBox" id="callStatus">
+				<input style="display: none" type="text" id="icallcenter.dialout.input" value="输入手机号码" onfocus="if(value=='输入手机号码') {value=''}"  onblur="if(value==''){value='输入手机号码'}" onKeyDown="if(event.keyCode == 13){softphoneBar.dialout(hojo.byId('icallcenter.dialout.input').value)}" class="inp1 fl" />
+				<div class="softphone_timer">
+					<div id="softphonebar.peerState"></div>
+					<div id="softphonebar.peerTimeState" class="peerTimeState">00:00:00</div>
+				</div>
+				<!-- <div class="clear10">&nbsp;</div> -->
+				<a href="#" class="DialEnable" id="DialEnable" style="display: none" onclick="softphoneBar.dialout(hojo.byId('icallcenter.dialout.input').value)"></a>
+				<a href="#" class="DialDisable" id="DialDisable" style="display: none"></a>
+				<div class="clear10">&nbsp;</div>
+				<a href="#" class="HangupEnable" id="HangupEnable" style="display: none" onClick="javascript:phone.hangup();"></a>
+				<a href="#" class="HangupDisable" id="HangupDisable"></a>
+				<div class="clear5">&nbsp;</div>
+				<a href="#" class="HoldEnable" id="HoldEnable" style="display: none" onClick="phone.hold();"></a>
+				<a href="#" class="HoldDisable" id="HoldDisable" ></a>
+				<a href="#" class="HoldGetEnable" id="HoldGetEnable" style="display: none" onClick="phone.unhold();"></a>
+				<div class="clear10">&nbsp;</div>
+				<a href="#" class="TransferEnable" id="TransferEnable" style="display: none" onClick="javascript:softphoneBar.toTransfer();"></a> 
+				<a href="#" class="TransferDisable" id="TransferDisable" ></a>
+				<div class="clear10">&nbsp;</div>
+				<a href="#" class="TransferEnable" id="ConsultTransferEnable" style="display: none" onclick="javascript:phone.transfer('912345','external', {})"></a> 
+				<a href="#" class="TransferDisable" id="ConsultTransferDisable" style="display: none"></a>
+				<div class="clear5">&nbsp;</div>
+				<a href="#" class="ConsultEnable" id="ConsultEnable" style="display: none" onclick="javascript:softphoneBar.toConsult();"></a> 
+				<a href="#" class="ConsultDisable" id="ConsultDisable" ></a>
+				<a href="#" class="StopConsultEnable" id="StopConsultEnable" style="display: none" onclick="javascript:phone.stopConsult();"></a> 
+				<div class="clear10">&nbsp;</div>
+				<a href="#" class="ThreeWayCallEnable" id="ThreeWayCallEnable" style="display: none" onclick="javascript:softphoneBar.toThreeWayCall();"></a> 
+				<a href="#" class="ThreeWayCallDisable" id="ThreeWayCallDisable"></a>
+				
+				<a href="#" class="ThreeWayCallEnable" id="ConsultThreeWayCallEnable" style="display: none" onclick="javascript:phone.threeWayCall('912345')"></a> 
+				<a href="#" class="ThreeWayCallDisable" id="ConsultThreeWayCallDisable" style="display: none"></a>
+	
+			</div>
+			<div class="barBox" id="peerStatus">
+				<div class="clear10">&nbsp;</div>
+				<div class="fl" style="width:5px;">&nbsp;</div>
+				<a href="#" id="IdleEnable" class="IdleEnable" ></a>
+				<a href="#" onclick="javascript:phone.setBusy(false,'0')" id="IdleDisable" class="IdleDisable" style="display: none"></a>
+				<div class="fl" style="width:5px;">&nbsp;</div>
+				<a href="#" id="RestEnable" class="RestEnable" style="display: none"></a>
+				<a href="#" onclick="javascript:phone.setBusy(true,'2')" id="RestDisable" class="RestDisable" ></a>
+				<div class="fl" style="width:5px;">&nbsp;</div>
+				<a href="#" id="BusyEnable" class="BusyEnable" style="display: none"></a>
+				<a href="#" onclick="javascript:phone.setBusy(true,'1')" id="BusyDisable" class="BusyDisable" ></a>
+			</div>
+	
+		</div>
+		<div id="netMessage"></div>
+		<iframe id="icallcenter.iframe" style="display: none"></iframe>
+
+</body>
+</html>

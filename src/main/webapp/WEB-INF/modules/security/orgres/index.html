@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html><head>
+<title>组织资源管理</title>
+<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<!--layout布局 -->
+	<div  class="easyui-layout" fit="true">
+		<!--layout布局：center -->
+	    <div data-options="region:'center',title:'组织'" style="padding:0px;background:#eee;" >
+	    	<!-- 显示组织信息的界面：datagrid -->
+	    	<table id="treegrid_list_org"> </table>
+	    	<!-- 显示 查询功能按钮的区域-->
+	    	<div id="btn_operate_org" style="padding:3px">
+				<table cellpadding="0" cellspacing="0" style="width:100%">
+					<tr>
+						<td style="text-align:left">
+							<div id="searchbar">
+								<input id="searchbox_org" class="easyui-searchbox" style="width:300px" data-options="searcher:doSearch,prompt:'请输入查询值',menu:'#menu_searcher_org'"></input>
+								<div id="menu_searcher_org">
+								<div data-options="name:'orgName',selected:'true'">组织名称</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+	    </div>
+	    
+	    <!--layout布局：east -->
+	    <div data-options="region:'east',title:'组织资源'" style="width:45%;padding-left:3px">
+<!-- 显示组织下资源信息的界面：datagrid  -->
+	    	<table id="datagrid_list_orgres"></table>
+<!-- 显示 添加，移除资源功能按钮的区域-->
+	    	<div id="btn_operate_res" style="padding:3px">
+	    	<table cellpadding="0" cellspacing="0" style="width:100%">
+			   <tr>
+				<td style="text-align:right">
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="addRes()">添加</a>
+			        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeRes()">移除</a>
+				</td>
+			   </tr>
+			</table>
+			</div>
+	    </div>
+	</div>
+<!-- 显示所有可添加的资源 -->
+	<div id="dialog_edit_res" class="easyui-dialog" title="资源信息 " data-options="onClose:clearDate" style="width:45%;height:50%" closed="true" modal="true" resizable="true" buttons="#EditButton">
+		<input type="hidden" id="orgid" name="orgid">
+		<!-- 显示资源信息的界面：datagrid -->
+		 <table id="datagrid_list_res" style="width:100%;height:100%"></table>
+	</div>
+<!--添加资源页面的功能按钮 -->
+	<div id="EditButton">
+		<a class="easyui-confirmbutton" iconcls="icon-save" data-options="fun:saveRes" plain="true">保存</a> 
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"onclick="javascript:$('#dialog_edit_res').dialog('close')" plain="false">取消</a> 
+	</div>
+</body>
+</html>

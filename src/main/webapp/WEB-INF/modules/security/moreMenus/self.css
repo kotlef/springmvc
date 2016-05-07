@@ -1,0 +1,13 @@
+.deskicon{
+	width:100px;
+	height:100px;
+	text-align: center;
+	padding:0px auto;
+	color:#fff;
+	position: absolute;
+	display:table;
+	cursor: pointer;
+}
+.toolbar{
+	background:#efefef;
+}

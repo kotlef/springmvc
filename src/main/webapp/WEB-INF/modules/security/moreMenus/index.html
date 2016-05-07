@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>更多菜单</title>
+	<link rel="stylesheet" type="text/css" href="self.css">
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+	<div id="more_menu_tab" class="easyui-tabs" data-options="tabPosition:'top',pill:true,tools:'#more_menu_tab_tools',fit:true,border:false,tabWidth:120,tabHeight:30">
+		<div title="导航菜单" data-options="iconCls:'icon-house'">
+			<!--
+			<div  style="padding:10px" >
+				<table style="width:100%" border="0">
+					<tr>
+						<td style="text-align:right">
+							<a onclick="undoRefreshMenu()" href="javascript:void(0)" class="easyui-linkbutton" style="" data-options="iconCls:'icon-undo'">返回上一级</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			-->
+			<div class="easyui-panel" id="panel_more_menus" data-options="fit:true,border:false"></div>
+		</div>
+	</div>
+	<div id="more_menu_tab_tools">
+		<div style="">
+			<div id="div_undo_levelMenu" style="float:right;margin:0px 0px;">
+				<a onclick="undoRefreshMenu()" data-options="plain:true,iconCls:'icon-undo'" style="height:30px;" href="javascript:void(0)" class="easyui-linkbutton c6">返回上级</a>
+			</div>
+			<div id="div_undo_indexMenu" hidden="true" style="float:right;margin:0px 0px;">
+				<a onclick="undoRefreshIndexMenu()" data-options="plain:true,iconCls:'icon-undo'" style="height:30px" href="javascript:void(0)" class="easyui-linkbutton c6">返回主页</a>
+			</div>
+		</div>
+	</div>
+	<div id="more_menu_tab_mm" class="easyui-menu" style="width: auto;">
+		<div id="Div1" data-options="name:1">关闭</div>
+		<div id="mm-tabcloseall" data-options="name:2">全部关闭</div>
+		<div id="mm-tabcloseother" data-options="name:3">除此之外全部关闭</div>
+		<div class="menu-sep"></div>
+		<div id="mm-tabcloseright" data-options="name:4">当前页右侧全部关闭</div>
+		<div id="mm-tabcloseleft" data-options="name:5">当前页左侧全部关闭</div>
+	</div>
+</body>
+</html>

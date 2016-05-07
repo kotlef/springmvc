@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html><head>
+    <title>供应商管理</title>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="validator.js"></script>
+<script type="text/javascript" src="initRegion.js"></script>
+<style type="text/css">
+        #fm{
+            margin:0;
+            padding:10px 30px;
+        }
+        .ftitle{
+            font-size:14px;
+            font-weight:bold;
+            padding:5px 0;
+            margin-bottom:5px;
+            border-bottom:1px solid #ccc;
+        }
+</style>
+</head>
+<body>
+  <!--layout布局 --> 
+  <div class="easyui-layout" data-options="fit:true">
+    <!--layout布局:center -->
+    <div data-options="region:'center',title:'供应商管理'" style="padding:0px;background:#eee;">
+		<!-- 显示所有供应商界面:datagrid-->
+		<table id="datagrid_list_supply"></table>
+		<!-- 供应商datagrid页面上功能按钮 -->
+		<div id="btn_operate_supply" style="padding:4px">
+	        <table cellpadding="0" cellspacing="0" style="width:100%">
+	        	 <tr>
+	        	 	 <td >
+		        	 	 <div id="searchbar">
+		        	 	 <input id="searchBox_supply" name="searchBox_supply" class="easyui-searchbox" data-options="searcher:getsupplyByParams,width:350, height: 26, prompt: '请输入关键词查找', menu: '#toSearch_supply'" />
+		        	 	 	 <div id="toSearch_supply" style="width: 85px;">
+				                  <div data-options="name:'supplyName'">供应商名称</div>
+				             </div>
+				         </div>
+			         </td>
+	                 <td style="text-align:right">
+	                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" onclick="javascript:$('#dialog_edit_supply').dialog('open')" plain="true">添加</a> 
+	        			<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit"onclick="updateOrBrowseSupply(1)" plain="true">修改</a> 
+	        			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" onclick="deleteSupply()" plain="true">删除</a>
+	        			<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" onclick="updateOrBrowseSupply(0)" plain="true">浏览</a> -->
+	    			 </td>
+	             </tr>
+	       </table>
+		</div>
+	   </div>
+	</div>
+    <!-- 显示编辑供应商界面:dialog -->
+  	<div id="dialog_edit_supply" class="easyui-dialog" title="编辑供应商 "width="auto" closed="true" modal="true" resizable="true" buttons="#EditButton"> 
+    	<form id="form_edit_supply" method="post">
+	    	<input type="hidden" id="supplyId" name="supplyId">
+			<table style="height:auto;width:auto" border="0" cellpadding="4px" cellspacing="2px" padding="8px">
+		        <tr>
+		          <td><label>供应商名称：</label></td>
+		          <td><input name="supplyName" id="text_id_supplyName" class="easyui-textbox" required> </td>
+		          <td><label>供应商类型：</label></td>
+		          <td><input id="supplyType" name="supplyType" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/SUPPLY_TYPE',method:'GET'" class="easyui-combobox" style="width:30px,height:50px" required> </td> 
+		          <td><label>企业性质：</label></td>
+			      <td><input name="corpClass" id="corpClass" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/CORP_CLASS',method:'GET'" class="easyui-combobox" required> </td>
+		          <td><label>状态：</label></td>
+		          <td><input class="easyui-combobox" id="status"  name="status"data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/STATUS',method:'GET'" class="easyui-combobox" required></td> 
+		        </tr>
+		        <tr>
+		          <td><label>纳税人类型：</label></td>
+			      <td><input class="easyui-combobox" id="taxPayerType" name="taxPayerType"data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/TAX_PAYER_TYPE',method:'GET'" required></td>
+		          <td><label>机构代码证：</label></td>
+		          <td><input name="corpCertificate" id="corpCertificate" class="easyui-textbox" required> </td>
+		          <td><label>付款路径：</label></td>
+		          <td><input class="easyui-combobox" id="paidWay" name="paidWay" data-options="valueField:'wordValue',prompt:'请选择',textField:'wordDisplay',editable:false,url:Swet.server.mainArchive+'/wordbook/list/PAID_WAY',method:'GET'" required></td>
+		       </tr>
+		          <td><label>供应商描述：</label></td>
+		          <td colspan="3"><textarea name="supplyDesc" rows="6" cols="98" multiline="true" class="easyui-textbox" style="width:350px;height:40px"></textarea></td>
+		          <td><label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label></td>
+		          <td colspan="3"><textarea name="note" rows="6" cols="98" multiline="true" class="easyui-textbox" style="width:350px;height:40px"></textarea></td>
+		        <tr>
+		        </tr>
+		        <tr>
+		          <td colspan=8><div class="ftitle">其他信息</div></td>
+		        </tr>
+		      	<tr>
+		          <td><label>营业执照号：</label></td>
+		          <td><input name="licenseNo" id="licenseNo" class="easyui-textbox validatebox" data-options="validType:'businessNo'"/></td>
+		          <td><label>成立日期：</label></td>
+			      <td><input name="foundDate" id="foundDate" class="easyui-datebox" data-options="editable:false"></td>
+		          <td><label>企业代码</label></td>
+		          <td><input id="corpCode" name="corpCode" class="easyui-textbox validatebox" validType="length[7,18]"></td>
+		          <td><label>经度：</label></td>
+		          <td><input id="longitude"  name="longitude" class="easyui-numberbox" data-options="min:1,precision:6"></td>
+		        </tr>
+		        <tr>
+		          <td><label>法定代表人：</label></td>
+		          <td><input name="corpPer" id="corpPer" class="easyui-textbox" > </td>
+		          <td><label>注册日期：</label></td>
+			      <td><input name="regDate" id="regDate" class="easyui-datebox" data-options="editable:false"></td>
+			      <td><label>银行名称：</label></td>
+			      <td><input class="easyui-textbox" name="bankName" id="bankName"></td>
+			      <td><label>纬度：</label></td>
+		          <td><input id="latitude" name="latitude" class="easyui-numberbox" data-options="min:1,precision:6"></td>
+		        </tr>
+		        <tr>
+		          <td><label>银行账户名：</label></td>
+			      <td><input class="easyui-textbox" id="accountName"  name="accountName"></td>
+		          <td><label>注册地址：</label></td>
+		          <td><input name="regAddr" id="regAddr" class="easyui-textbox"></td>
+		          <td><label>注册商标：</label></td>
+			      <td><input name="regMark" id="regMark" class="easyui-textbox"></td>
+			      <td><label>传真：</label></td>
+		          <td><input class="easyui-textbox validatebox" id="fax"  name="fax" data-options="validType:'faxcode'"></td>
+		        </tr>
+		        <tr>
+		          <td><label>银行账号：</label></td>
+			      <td><input class="easyui-textbox validatebox" name="bankNo" id="bankNo" data-options="validType:'bankNo'"></td>
+			      <td><label>公司电话：</label></td>
+		          <td><input class="easyui-textbox validatebox"  id="tel" name="tel" data-options="validType:'phoneNumber'"></td>
+		          <td><label>注册资本：</label></td>
+		          <td><input  id="regCaptial" name="regCaptial"  class="easyui-numberbox" data-options="min:1,precision:2"  ></td>
+		          <td><label>主页：</label></td>
+		          <td><input class="easyui-textbox"  id="url" name="url"></td>
+		        </tr>
+		      </table>
+		      <div >
+		      	 <!-- <input type="checkbox"  id="y-test"> -->
+                 <span style="font-size:12px;font-weight:bold;">相关补充信息</span>
+			  </div>
+		      <div id="div_supply_otherinfo">
+		      <table>
+			    <tr>
+			      <td><label>经营区域描述：</label></td>
+		          <td><input class="easyui-textbox " id="bizAreaDesc" name="bizAreaDesc"></td>
+			      <td><label>联系人名称：</label></td>
+		          <td><input class="easyui-textbox" id="linkman"  name="linkman"></td>
+		          <td><label>通讯地址：</label></td>
+		          <td><input class="easyui-textbox" id="addr1"  name="addr1"></td>
+		          <td><label>邮政编码：</label></td>
+		          <td><input class="easyui-textbox validatebox" name="zip" id="zip" data-options="validType:'zipcode'"></td>
+		        </tr>
+		         <tr>
+		          <td><label>经营品牌描述：</label></td>
+		          <td><input class="easyui-textbox" id="bizBrandDesc" name="bizBrandDesc"></td>
+		          <td><label>联系人手机：</label></td>
+		          <td><input class="easyui-textbox validatebox"  id="cell" name="cell" data-options="validType:'mobile'"></td>
+		          <td><label>经营范围：</label></td>
+		          <td><input name="bizScope" id="bizScope" class="easyui-textbox"></td>
+		          <td><label>经营规模：</label></td>
+		          <td><input id="bizScaleid" name="bizScaleid" class="easyui-numberbox validatebox" data-options="min:1,validType:'numbers'"></td>
+		        </tr>
+		        <tr>
+		          <td><label>经营类别描述：</label></td>
+		          <td><input class="easyui-textbox" name="bizCateDesc" id="bizCateDesc"></td>
+		          <td><label>税务登记名：</label></td>
+		          <td><input class="easyui-textbox" id="taxName"  name="taxName"></td>
+		          <td><label>经营地址：</label></td>
+		          <td><input class="easyui-textbox" id="addr2"  name="addr2"></td>
+		          <td><label>地址三：</label></td>
+		          <td><input class="easyui-textbox" id="addr3"  name="addr3"/></td>
+		        </tr>
+		        <!-- <tr>
+		          <td><label>区域：</label></td>
+		          <td><input  id="combobox_region_house" name="regionId" data-options="method:'get', prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false">
+		          <td><label>省：</label></td>
+		          <td><input id="combobox_province_house" name="provinceId" class="easyui-combobox" data-options="method:'get', prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false">
+		          <td><label>市：</label></td>
+		          <td><input id="combobox_city_house" name="cityId" class="easyui-combobox" data-options="method:'get', prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false">
+		          <td><label>区：</label></td>
+		          <td><input id="combobox_district_house" name="districtId" class="easyui-combobox" data-options="method:'get', prompt:'请选择',valueField:'regionId',textField:'regionName',editable:false">
+		         </tr> -->
+		    	</table>
+		       </div> 
+	    	</fieldset>
+	       </form>
+    </div>
+    <!-- 显示编辑供应商界面确定，取消按钮 -->
+    <div id="EditButton">
+       <a class="easyui-confirmbutton" iconcls="icon-save" data-options="fun:checkSupply" plain="true">保存</a> 
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"onclick="CancelEdit()" plain="true">取消</a> 
+    </div>
+    
+    <!-- ---浏览供应商详细信息页面 -->
+    <div id="dialog_detail_supply" class="easyui-dialog" title="浏览供应商资料" style="width:950px;height:440px" closed="true" modal="true" resizable="true" buttons="#BrowseButton">
+    	<div class="easyui-panel"  id="panel_SupplyDetail" style="width:100%;height:100%" data-options="fit:true,border:false"></div>
+    </div>
+    
+    <div id="BrowseButton">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="closeBrowse()" plain="true">关闭</a> 
+    </div>
+</body>
+</html>

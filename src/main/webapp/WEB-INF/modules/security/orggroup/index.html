@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>机构管理</title>
+	<script type="text/javascript" src = "main.js"></script>
+  </head>
+  
+  <body style="width:100%;height:100%;">
+     <div id="layout_orggroup" class="easyui-layout" fit="true" >
+	    <div data-options="region:'center'" style="padding:5px;background:#eee;">
+<!-- 机构列表 -->
+    	<table id="table_list_orggroup" fit="true"></table>
+<!-- 工具栏开始 -->	    
+	    	 <div id="tb_orggroup" style="text-align:right;">
+	    	 	<table style="cellpadding:0;cellspacing:0;width:100%;padding:0px">
+	    	 		<tr>
+	    	 			<td style="text-align:left">
+<!-- 条件查询开始 -->   
+						    	<input id="searchbox_orggroup" class="easyui-searchbox" style="width:300px"
+									data-options="searcher:doSearch,prompt:'请输入查询值',menu:'#menu_searcher_orggroup'"></input>
+								<div id="menu_searcher_orggroup">
+									<div data-options="name:'orggroupName'">机构名称</div>
+								</div>
+	    	 			</td>
+	    	 			<td style="text-align:right">
+	    	 				<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="openAdd();">添加</a>
+						    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="deleteRows();">删除</a> 
+	    	 			</td>
+	    	 		</tr>
+	    	 	</table>
+			</div>
+	    </div>   
+	</div>  
+  	
+
+<!-- 添加机构开始 -->
+    <div id="dlg_add_orggroup" class="easyui-dialog"
+    	stytle="height:260px;width:650px;padding:10px 20px"
+    	data-options="iconCls:'icon-add',closed:true,resizable:false,modal:true,onClose:clearDate,buttons:'#dlg-buttons'">
+    	<form id="form_add_orggroup" method="post" novalidata="novalidata">
+    		<input type="hidden" name="state">
+    		<input type="hidden" name="treeLevel">
+    		<table cellspacing="5">
+    			<tr>
+    				<td>机构编码</td>
+    				<td>
+    					<input class="easyui-numberbox"  data-options = "required:true,prompt:'由数字0-9组成' " id="txb_add_orggroup_orggroupId" name="id" style="width:140px;">
+    				</td>
+    				<td>机构名称</td>
+    				<td><input class="easyui-textbox" data-options="required:true,validType:['remote[checkorggroupNameUrl,checkorggroupName]'],novalidate:false " id="txb_add_orggroup_orggroupName"  name ="text" style="width:140px;"></td>
+    				<td>机构类型</td>
+    				<td><input class="easyui-combobox"  required="true" panelHeight="80" id="cmb_add_orggroup_orggroupType" name="orggroupType" style="width:140px;"
+    							data-options="editable:false,method:'get',textField:'wordDisplay',valueField:'wordValue',prompt:'请选择',url:Swet.server.mainArchive+'/wordbook/list/ORGGROUP_TYPE'  "></td>
+    			</tr>
+    			<tr>
+    				<td>所属机构</td>
+    				<td><input class="easyui-combotree" data-options='editable:false' panelHeight="180" id="combotree_add_orggroupId" name="parentId" style="width:140px;"></td>
+    				<td>状态 </td>
+    				<td>
+    					<input class="easyui-combobox" required="true" panelHeight="80" id="cmb_add_orggroup_status" name="status" style="width:140px;"
+    							data-options="editable:false,method:'get',textField:'wordDisplay',valueField:'wordValue',prompt:'请选择',url:Swet.server.mainArchive+'/wordbook/list/STATUS' ">
+    				</td>
+    				<td>启用日期</td>
+    				<td><input class="easyui-datebox" data-options="editable:false,onChange:setCloseDate" id="dtb_add_orggroup_entryDate" name="openDate" style="width:140px;"></td>
+    			</tr>
+    			<tr>
+    			    <td>停用日期</td>
+    				<td><input class="easyui-datebox" data-options="editable:false" id="dtb_add_orggroup_closeDate" name="closeDate" style="width:140px;"></td>
+    			</tr>
+    			<tr>
+    				<td>备注</td>
+    				<td colspan="5">
+    					<input class="easyui-textbox" id="txb_add_orggroup_note" name="note" data-options="multiline:true" style="height:40px;width:530px;"></input></td>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td colspan="6" style="text-align:right">
+    					<a href="javascript:void(0)" class="easyui-linkbutton c6" id="btn_save_orggroup" iconCls="icon-ok" onclick="saveOrgGroup();">保 &nbsp;存</a>
+    					<a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-cancel" onclick="closeForm()">取&nbsp;消</a>
+    				</td>
+    			</tr>
+    		</table>
+    	</form>
+    </div>
+   
+  </body>
+</html>

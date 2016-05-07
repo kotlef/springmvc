@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>主页管理</title>
+	<script type="text/javascript" src="main.js"></script>
+	<link type="text/css" rel="self.css">
+</head>
+<body>
+	<table id="homapage_datagrid" class="easyui-datagrid" title="主页管理" style="width:700px;height:250px"
+		   data-options="pageSize:25,pageList:[15,25,35],rownumbers:true,pagination:true,fit:true,fitColumns:true,method:'get',toolbar:'#homapage_datagrid_tb'">
+		<thead>
+		<tr>
+			<th data-options="field:'homepageName',align:'center',width:100">主页名称</th>
+			<th data-options="field:'homepageUrl',align:'left'">主页链接</th>
+			<th data-options="field:'note',width:250,align:'left'">备注</th>
+			<th data-options="field:'createTime',align:'center'">记录建立时间</th>
+			<th data-options="field:'uid',align:'center',formatter:formatterHomepageAction">操作</th>
+			<th data-options="field:'ck',checkbox:true"></th>
+		</tr>
+		</thead>
+	</table>
+	<div id="homapage_datagrid_tb" style="height:auto">
+		<table style="width:100%;">
+			<tr>
+				<td style="text-align:left">
+						<input id="textbox_searchHomePage" class="easyui-textbox" data-options="buttonText:'查询',buttonIcon:'icon-search',prompt:'请输入要查询的主页名称...'" style="width:350px;height:24px;">
+				</td>
+				<td style="text-align:right">
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'btn-add',plain:true" onclick="addHomePage();">添加</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'btn-seldel',plain:true" onclick="delHomePageRows();">批量删除</a>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!-- ---添加或修改主页界面---- -->
+	<div id="dialog_homepage" class="easyui-dialog" data-options="title:'添加主页菜单',iconCls:'icon-add',width:'450px',closed:true,modal:true,resizable:true,buttons:'#dialog_homepage_buttons'">
+		<form id="form_homepage" method="post">
+			<table style="width: 100%;height: auto" cellpadding="5px">
+				<tr>
+					<input type="hidden" name="homepageId">
+					<td align="right">主页名称：</td>
+					<td align="left" colspan="2">
+						<input name="homepageName" class="easyui-textbox" data-options="required:true" style="width:350px">
+					</td>
+				</tr>
+
+				<tr>
+					<td align="right">主页链接：</td>
+					<td align="left" colspan="2">
+						<input name="homepageUrl" class="easyui-textbox" style="width:350px" data-options="required:true">
+					</td>
+				</tr>
+				<tr>
+					<td align="right">备注：</td>
+					<td height="50" align="left" colspan="2">
+						<input style="width:350px;height:50px" name="note" class="easyui-textbox" data-options="multiline:true" >
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dialog_homepage_buttons" style="text-align:right">
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-save" onclick="saveHomePage()" data-options="plain:true">确定</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"onclick="homeCancelEdit()" plain="true">取消</a>
+	</div>
+</body>
+</html>

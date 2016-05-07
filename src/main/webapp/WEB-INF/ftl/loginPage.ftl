@@ -41,17 +41,29 @@
         <input type="text" id="loginString" name="loginString" class="form-control loginString" placeholder="邮箱/手机/身份证" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="密码" required>
-         <!--<#if Session.showCaptcha?has_content && Session.showCaptcha == true>-->
-		<input type="text" class="form-control captcha" name="captcha" id="captcha" placeholder="验证码"  required/>
-	   	<img id="captchaImg" src="./getCaptcha" alt="验证码" />
-	   	<input type="hidden" id="capthchNumber" value="${Session["captcha"]} "/>
-       	<a href="#"  id ="captchaHref" class="btn btn-info btn-sm ">更换验证码</a><br/>
-       	    <!-- </#if>-->
+         <#if Session.showCaptcha?exists>
+				<input type="text" class="form-control captcha" name="captcha" id="captcha" placeholder="验证码"  required/>
+			   	<img id="captchaImg" src="./getCaptcha" alt="验证码" />
+			   	<input type="hidden" id="capthchNumber" value="${Session["captcha"]} "/>
+		       	<a href="#"  id ="captchaHref" class="btn btn-info btn-sm ">更换验证码</a><br/>
+       	  </#if>
         <div class="checkbox">
           <label>
             <input type="checkbox" id="rememberMe" name="rememberMe" value="rememberMe"> 记住我
           </label>
         </div>
+        <#if shiroLoginFailure?exists>  
+		  <div class="alert alert-danger" style="background-image: none;">
+		       ${shiroLoginFailure}
+		  </div>
+       </#if>
+       
+         ${request.loginFailure}
+       <#if Request["loginFailure"]?exists>  
+		  <div class="alert alert-danger" style="background-image: none;">
+		       ${Request["loginFailure"]}
+		  </div>
+       </#if>
         <button class="btn btn-lg btn-primary btn-block" id="loginBtn"  type="submit">登录</button>
       </form>
 
@@ -61,7 +73,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/ie10-viewport-bug-workaround.js"></script>
 
-  <script src="/springmvc/common/js.cookie.js"></script>
+  <script src="/ynlxcloud/common/js.cookie.js"></script>
 
     <script type="text/javascript">
 		$(function() {
@@ -72,6 +84,17 @@
 			     $('#captchaImg').attr('src','./getCaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
 		     	 //$("#capthchNumber").val(Cookies.get("captcha"));
 		     	});
+				//订单类型缓存到本地
+				$.ajax({
+					url:"http://localhost:8080/ynlxbusiness/billtype",
+					success: function(result){
+						for(var i=0;i<result.length;i++){
+							var wordbook=result[i];
+							var key=wordbook.billType;
+							window.localStorage.setItem(key,wordbook.billTypeName);
+						}
+					}
+				});
 		     	//字典缓存
 		    	  $.ajax({
 						  url: "http://localhost:8080/ynlxmainarchive/wordbook",
@@ -104,7 +127,7 @@
 		}
 
 		if(Cookies.get("homepageId")==undefined)
-		     	Cookies.set('homepageId', '0', { path: '/springmvc' });
+		     	Cookies.set('homepageId', '0', { path: '/ynlxcloud' });
 
     </script>
 </body>

@@ -22,10 +22,6 @@ public class SingleJsonStructure extends BaseJsonStructure{
 				+ ", total=" + getTotal() + ", rows=" + rows + "]";
 	}
 
-	public String getStringRows() {
-		return String.valueOf(rows);
-	}
-
 	public String toObjectString(String rows) {
 		return "{\"success\":" + getSuccess() + ", \"msg\":\"" + getMsg()
 				+ "\", \"total\":" + getTotal() + ",\"rows\":\"" + rows + "\"}";

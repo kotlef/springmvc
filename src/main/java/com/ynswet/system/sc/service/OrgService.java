@@ -11,6 +11,11 @@
  */
 package com.ynswet.system.sc.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.ynswet.system.sc.domain.Org;
+
 
 /**
  * 类功能说明：组织管理
@@ -27,5 +32,20 @@ package com.ynswet.system.sc.service;
 public interface OrgService {
 	
 	public void deleteOrg(Integer orgid);
-	
+	/**
+	 * 
+	 * 函数功能说明:获取子节点
+	 * @author 张毕思 
+	 * @date 2015年10月26日
+	 * 修改者名字 修改日期
+	 * 修改内容
+	 * @param @param list
+	 * @param @param typeId
+	 * @param @return    
+	 * @return String   
+	 * @throws
+	 */
+	public List<Integer> getChildNodes(List<Org> list, Integer typeId);
+
+	public List<Map<String,Object>> searchOrgAndStationByParentId(int parentId);
 }

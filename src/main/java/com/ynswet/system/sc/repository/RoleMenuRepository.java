@@ -1,6 +1,9 @@
 package com.ynswet.system.sc.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.ynswet.system.sc.domain.RoleMenu;
 import com.ynswet.system.sc.domain.RoleMenuId;
@@ -20,5 +23,10 @@ import com.ynswet.system.sc.domain.RoleMenuId;
  */
 
 public interface RoleMenuRepository extends JpaRepository<RoleMenu, RoleMenuId> {
-
+	
+	@Query(value="select r.id.menuId from RoleMenu r where r.id.roleId = ?1")
+	public List<Integer> findMenuIdByRoleId(Integer roleId); 
+	
+	@Query(value="select r from RoleMenu r where r.id.roleId = ?1")
+	public List<RoleMenu> findByRoleId(Integer roleId);
 }

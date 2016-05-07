@@ -125,6 +125,32 @@ public class MD5Util {
 		return byteToHexString(pwd);
 
 	}
+	
+	/**
+	 * MD5加密获取前6位字符
+	 * @author liyupeng
+	 */
+	public static String getLeftSixPwd(String password) {
+		String digest = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] hash = md.digest(password.getBytes("UTF-8"));
+
+			//converting byte array to Hexadecimal String
+			StringBuilder sb = new StringBuilder(2 * hash.length);
+			for (byte b : hash) {
+				sb.append(String.format("%02x", b & 0xff));
+			}
+
+			digest = sb.toString();
+
+		} catch (UnsupportedEncodingException ex) {
+			//Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (NoSuchAlgorithmException ex) {
+			//Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return digest.toUpperCase().substring(0,6);
+	}
 
 	public static void main(String[] args) {
 

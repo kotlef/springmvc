@@ -20,7 +20,7 @@ import org.apache.commons.lang.time.FastDateFormat;
  * @author Michael Weaver
  */
 public abstract class DateParser {
-	public final static String DEFAULT_DATE_FORMAT_FROM_DATE_CONTROLS = "yyyy-MM-dd"; //$NON-NLS-1$
+	public final static String DEFAULT_DATE_FORMAT_FROM_DATE_CONTROLS = "yyyy-MM-dd HH:mm:ss"; //$NON-NLS-1$
 
 	public static Date convertToDate(String text, Locale locale, String... patterns) {
 		Date d = null;

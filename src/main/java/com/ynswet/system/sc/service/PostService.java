@@ -11,6 +11,10 @@
  */
 package com.ynswet.system.sc.service;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * 类功能说明
@@ -27,5 +31,7 @@ package com.ynswet.system.sc.service;
 public interface PostService {
 	
 	public void deletePost(Integer postId);
-	
+	public void deltePost(Integer orgid,Integer roleId,Integer uid);
+	public List<Map<String,Object>> findPost(Integer uid);
+	public List<Integer> findUids(Collection<Integer> orgids);
 }

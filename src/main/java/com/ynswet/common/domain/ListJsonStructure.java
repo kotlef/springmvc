@@ -1,11 +1,12 @@
 package com.ynswet.common.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListJsonStructure<T extends Object> extends BaseJsonStructure{
 
 
-	private List<T> rows;
+	private List<T> rows= new ArrayList<T>(0);
 
 	public List<T> getRows() {
 		return rows;

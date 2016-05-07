@@ -31,4 +31,17 @@ public interface MenuRepository extends JpaRepository<Menu, Integer> {
 	
 	public List<Menu> findByParentId(Integer parentId);
 
+	public Menu findByMenuId(Integer menuId);
+	
+	@Query(value="SELECT m FROM Menu m WHERE m.menuName LIKE concat('%',?1,'%')")
+	public List<Menu> findByMenuNameLike(String menuName);
+
+	@Query(value="select m from Menu m,RoleMenu rm where m.menuId=rm.id.menuId and rm.id.roleId = ?1")
+	public List<Menu> findMenuByRoleId(Integer roleId);
+
+	@Query(value="select distinct m from Menu m,RoleMenu rm where m.menuId=rm.id.menuId and rm.id.roleId in ?1 and m.menuLevel = ?2 order by m.menuId asc")
+	public List<Menu> findMenuByRoleIds(Integer[] roleIds,String menuLevel);
+
+	@Query(value="select distinct m from Menu m,RoleMenu rm where m.menuId=rm.id.menuId and m.parentId = ?1 and rm.id.roleId in ?2 order by m.menuId asc")
+	public List<Menu> findByParentIdAndRoleIds(Integer parentId,Integer[] roleIds);
 }

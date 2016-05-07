@@ -10,33 +10,23 @@
  */
 package com.ynswet.system.sc.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
 import com.ynswet.common.rest.BaseRest;
-import com.ynswet.common.util.DateTimeUtils;
-import com.ynswet.system.sc.domain.User;
 import com.ynswet.system.sc.domain.Userlogin;
-import com.ynswet.system.sc.repository.UserRepository;
 import com.ynswet.system.sc.repository.UserloginRepository;
-import com.ynswet.system.sc.service.UserService;
 import com.ynswet.system.sc.util.PasswordHelper;
+import com.ynswet.system.sc.util.SystemVariableUtils;
 
 /**
  *
@@ -91,8 +81,30 @@ public class UserloginRest extends BaseRest {
 			userloginRepository.save(ul);
 		}
 		userloginRepository.flush();
+		json.setSuccess(true);
 		json.setMsg(BaseRest.SAVE_SUCCESS);
 		return json;
 	}
 
+	/**
+	 * url:/userlogin/checkPassword
+	 * 函数功能说明
+	 * @author 李玉鹏
+	 * @date 2015年8月13日 修改者名字 修改日期 修改内容
+	 * @param @param oldPassword
+	 * @param @return   
+	 * @return Boolean   
+	 * @throws
+	 */
+	@RequestMapping(value = "/checkPassword", method = RequestMethod.POST)
+	@Transactional
+	public boolean updatePassword(@RequestParam("oldPassword") String oldPassword) {
+		Userlogin userlogin = SystemVariableUtils.getCommonVariableModel().getUserlogin();
+		String pwd = passwordHelper.getPassword(userlogin, oldPassword);
+		if (pwd.equals(userlogin.getPassword())) {
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

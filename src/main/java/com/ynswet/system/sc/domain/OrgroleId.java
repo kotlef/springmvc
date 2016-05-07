@@ -1,5 +1,5 @@
 package com.ynswet.system.sc.domain;
-// Generated 2015-6-16 16:11:07 by Hibernate Tools 4.3.1
+// Generated 2015-7-17 16:03:34 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

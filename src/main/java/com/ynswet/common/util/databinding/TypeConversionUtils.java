@@ -118,6 +118,7 @@ public class TypeConversionUtils {
 	 * @param pattern
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static PropertyEditor getPropertyEditor(Object object, String path, String pattern) {
 		if (object == null)
 			return null;

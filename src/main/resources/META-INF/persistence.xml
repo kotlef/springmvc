@@ -6,30 +6,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
 		<!-- sc -->
-		<class>com.ynswet.system.sc.domain.Homepage</class>
-		<class>com.ynswet.system.sc.domain.Menu</class>
-		<class>com.ynswet.system.sc.domain.MenuL</class>
-		<class>com.ynswet.system.sc.domain.Org</class>
-		<class>com.ynswet.system.sc.domain.Orggroup</class>
-		<class>com.ynswet.system.sc.domain.Orgrole</class>
-		<class>com.ynswet.system.sc.domain.OrgroleId</class>
-		<class>com.ynswet.system.sc.domain.OrgRes</class>
-		<class>com.ynswet.system.sc.domain.OrgResId</class>
-		<class>com.ynswet.system.sc.domain.Permission</class>
-		<class>com.ynswet.system.sc.domain.PermissionL</class>
-		<class>com.ynswet.system.sc.domain.Post</class>
-		<class>com.ynswet.system.sc.domain.PostId</class>
 		<class>com.ynswet.system.sc.domain.Res</class>
-		<class>com.ynswet.system.sc.domain.ResL</class>
-		<class>com.ynswet.system.sc.domain.Role</class>
-		<class>com.ynswet.system.sc.domain.RoleMenu</class>
-		<class>com.ynswet.system.sc.domain.RoleMenuId</class>
-		<class>com.ynswet.system.sc.domain.RolePermission</class>
-		<class>com.ynswet.system.sc.domain.RolePermissionId</class>
-		<class>com.ynswet.system.sc.domain.User</class>
-		<class>com.ynswet.system.sc.domain.UserL</class>
-		<class>com.ynswet.system.sc.domain.Userlogin</class>
-		<class>com.ynswet.system.sc.domain.UserloginL</class>
 
 
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>

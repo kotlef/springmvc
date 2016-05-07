@@ -8,6 +8,7 @@ import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.ConfigurationException;
@@ -15,16 +16,14 @@ import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ynswet.system.sc.authc.SimpleAuthenticationInfo;
-import com.ynswet.system.sc.domain.Menu;
 import com.ynswet.system.sc.domain.Userlogin;
 import com.ynswet.system.sc.model.CommonVariableModel;
 import com.ynswet.system.sc.model.UserAuthorizationInfo;
 import com.ynswet.system.sc.repository.PermissionRepository;
 import com.ynswet.system.sc.repository.PostRepository;
 import com.ynswet.system.sc.repository.RoleRepository;
-import com.ynswet.system.sc.util.ByteSource;
 import com.ynswet.system.sc.util.PasswordHelper;
+import com.ynswet.system.sc.util.SimpleByteSource;
 
 /**
  *
@@ -63,43 +62,29 @@ public class JdbcAuthenticationRealm extends AuthorizationRealm {
 		String loginString = loginStringPasswordToken.getUsername();
 
 		if (loginString == null) {
-			throw new AccountException("用户名不能为空");
+			throw new AccountException("用户名不能为空!");
 		}
 
 		Userlogin userlogin = userManager.getUserlogin(loginString);
 
 		if (userlogin == null) {
-			throw new UnknownAccountException("用户不存在");
+			throw new UnknownAccountException("用户名不存在!");
 		}
-
+		if(userlogin !=null && userlogin.getStatus().equals("S")){
+			throw new AccountException("用户已失效!");
+		}
 		CommonVariableModel model = new CommonVariableModel(userlogin);
-
-		initShiroUserAuthorizationInfo(model, userlogin);
+		
+		Integer uid = userlogin.getUid();
+		
+		model.setAuthorizationInfo(getUserAuthorizationInfoByUserId(uid));
 
 		return new SimpleAuthenticationInfo(model, userlogin.getPassword(),
-				ByteSource.Util.bytes(passwordHelper
+				new SimpleByteSource(passwordHelper
 						.getCredentialsSalt(userlogin)), getName());
 
 	}
 
-	/**
-	 * sc opensessionview url add /login lazy init roles menus perms
-	 */
-	private void initShiroUserAuthorizationInfo(CommonVariableModel model,
-			Userlogin userlogin) {
-
-		Integer uid = userlogin.getUid();
-		if (null != uid) {
-			model.setOrgList(userManager.getOrgsByUserId(uid));
-			model.setResList(userManager.getRessByUserId(uid));
-			model.setRoleList(userManager.getRolesByUserId(uid));
-			model.setUser(userManager.getUserByUserId(uid));
-			model.setAuthorizationInfo(getUserAuthorizationInfoByUserId(uid));
-			model.setHomepageList(userManager.getHomepageByUserId(uid));
-			model.setMenusList(userManager.getMenusByUserId(uid));
-
-		}
-	}
 
 	/**
 	 *

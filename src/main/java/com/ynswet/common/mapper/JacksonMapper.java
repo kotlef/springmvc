@@ -166,6 +166,7 @@ public class JacksonMapper {
 	 * HashMap<String,MyBean>, 则调用(HashMap.class,String.class, MyBean.class)
 	 * </p>
 	 */
+	@SuppressWarnings("deprecation")
 	public JavaType createCollectionType(Class<?> collectionClass,
 			Class<?>... elementClasses) {
 		return mapper.getTypeFactory().constructParametricType(collectionClass,

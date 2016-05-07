@@ -13,7 +13,6 @@ package com.ynswet.system.sc.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import com.ynswet.system.sc.domain.Userlogin;
 
@@ -33,5 +32,5 @@ import com.ynswet.system.sc.domain.Userlogin;
 public interface UserloginRepository extends JpaRepository<Userlogin, String> {
 
 	public List<Userlogin> findByUid(Integer uid);
-	
+	public List<Userlogin> findByUidIn(Integer[] uids);
 }

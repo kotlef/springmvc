@@ -7,8 +7,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
-import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module.Feature;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module.Feature;
 
 public class HibernateAwareObjectMapper
     extends ObjectMapper
@@ -24,9 +24,11 @@ public class HibernateAwareObjectMapper
 
     public HibernateAwareObjectMapper()
     {
-        Hibernate4Module hm = new Hibernate4Module();
+        Hibernate5Module hm = new Hibernate5Module();
 
-        hm.enable( Feature.FORCE_LAZY_LOADING );
+        hm.enable(Feature.FORCE_LAZY_LOADING );
+        
+        hm.disable(Feature.USE_TRANSIENT_ANNOTATION);
 
         registerModule( hm );
 

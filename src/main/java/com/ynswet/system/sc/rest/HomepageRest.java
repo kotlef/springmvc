@@ -10,29 +10,25 @@
  */
 package com.ynswet.system.sc.rest;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.management.MXBean;
-
+import com.ynswet.common.domain.SingleJsonStructure;
+import com.ynswet.common.rest.BaseRest;
+import com.ynswet.common.util.BeanUtils;
+import com.ynswet.common.util.DateTimeUtils;
+import com.ynswet.common.util.DateUtils;
+import com.ynswet.system.sc.domain.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ynswet.common.domain.ListJsonStructure;
-import com.ynswet.common.domain.SingleJsonStructure;
 import com.ynswet.system.sc.domain.Homepage;
-import com.ynswet.system.sc.domain.Menu;
 import com.ynswet.system.sc.repository.HomepageRepository;
-import com.ynswet.system.sc.repository.MenuRepository;
-import com.ynswet.system.sc.service.MenuService;
 
 /**
  *
@@ -85,4 +81,110 @@ public class HomepageRest {
 		return homepageRepository.getOne(id);
 	}
 
+	/**
+	 *
+	 * 函数功能说明
+	 *
+	 * @author 原勇
+	 * @date 2015年6月18日 修改者名字 修改日期 修改内容
+	 * @param @return   
+	 * @return ListJsonStructure<Menu>   
+	 * @throws
+	 */
+	@RequestMapping(value="/toPage",method = RequestMethod.GET)
+	public ListJsonStructure<Homepage> findAllToPage(
+			@RequestParam("homepageName")String homepageName,
+			@RequestParam("page")int page,
+			@RequestParam("rows")int size) {
+		Pageable pageable = new PageRequest(page-1, size);
+		ListJsonStructure<Homepage> json = new ListJsonStructure<Homepage>();
+		Page<Homepage> homepageList;
+		if(homepageName.equals("")){
+			homepageList = homepageRepository.findAllOrderByCreateTimeDesc(pageable);
+		}else{
+			homepageList = homepageRepository.findByHomepageNameLike(homepageName,pageable);
+		}
+
+		json.setRows(homepageList.getContent());
+		json.setMsg(BaseRest.FIND_SUCCESS);
+		json.setTotal((int) homepageList.getTotalElements());
+		return json;
+	}
+
+	/**
+	 *
+	 * 函数功能说明：保存主页菜单
+	 *
+	 * @author 李玉鹏
+	 * @date 2015年11月09日 修改者名字 修改日期 修改内容
+	 * @param @return   
+	 * @return SingleJsonStructure   
+	 * @throws
+	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public SingleJsonStructure save(@ModelAttribute Homepage homepage){
+		Integer homepageId = homepage.getHomepageId();
+		if(homepageId!=null){
+			Homepage homepage1 = homepageRepository.findOne(homepageId);
+			homepage.setCreateTime(homepage1.getCreateTime());
+		}else{
+			homepage.setCreateTime(DateTimeUtils.getSystemCurrentTimeMillis());
+		}
+		Homepage homepageOld = homepageRepository.saveAndFlush(homepage);
+		SingleJsonStructure json = new SingleJsonStructure();
+		if(homepageOld==null){
+			json.setMsg(BaseRest.SAVE_SUCCESS);
+			return json;
+		}
+		return json;
+	}
+	/**
+	 *
+	 * 函数功能说明：删除主页菜单
+	 *
+	 * @author 李玉鹏
+	 * @date 2015年11月09日 修改者名字 修改日期 修改内容
+	 * @param @return   
+	 * @return SingleJsonStructure   
+	 * @throws
+	 */
+
+	@RequestMapping(value="/{homepageIds}",method = RequestMethod.DELETE)
+	public SingleJsonStructure delete (@PathVariable String homepageIds) {
+		if(!homepageIds.isEmpty()){
+			String[] arrHomepageIds = homepageIds.split(",");
+			for(String homepageId : arrHomepageIds){
+				homepageRepository.delete(Integer.valueOf(homepageId));
+				homepageRepository.flush();
+			}
+		}
+		SingleJsonStructure json = new SingleJsonStructure();
+		json.setMsg(BaseRest.DELTE_SUCCESS);
+		return json;
+	}
+
+	/**
+	 *
+	 * 函数功能说明：删除主页菜单
+	 *
+	 * @author 李玉鹏
+	 * @date 2015年11月09日 修改者名字 修改日期 修改内容
+	 * @param @return   
+	 * @return SingleJsonStructure   
+	 * @throws
+	 */
+
+	@RequestMapping(value="/findByRoles",method = RequestMethod.GET)
+	public List<Map<String,Object>> findByRoles (@RequestParam("roles[]") Integer[] roles) {
+		List<Object[]> results = homepageRepository.findByRoles(roles);
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		for (Object[] result : results) {
+			Role role = (Role) result[0];
+			String homepageName = (String) result[1];
+			Map<String, Object> roleMap = BeanUtils.toMap(role);
+			roleMap.put("homepageName", homepageName);
+			list.add(roleMap);
+		}
+		return list;
+	}
 }

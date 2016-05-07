@@ -1,5 +1,11 @@
 package com.ynswet.system.sc.service;
 
+import com.ynswet.system.sc.domain.Orgrole;
+import com.ynswet.system.sc.domain.OrgroleId;
+import com.ynswet.system.sc.domain.Role;
+import com.ynswet.system.sc.domain.RoleMenu;
+import com.ynswet.system.sc.domain.RoleMenuId;
+
 
 /**
  * 
@@ -17,5 +23,7 @@ package com.ynswet.system.sc.service;
 public interface RoleService {
 	
 	public void deleteRole(Integer roleId);
+	
+	public boolean saveOrUpdateRole(Integer ajag,Role role,RoleMenu roleMenu,RoleMenuId roleMenuId,Orgrole orgRole,OrgroleId orgRoleId,String menuids,String orgids);
 	
 }

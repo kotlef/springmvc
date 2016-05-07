@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
+import org.apache.shiro.util.ByteSource;
 
 
 /**
@@ -27,7 +28,7 @@ import org.apache.shiro.codec.Hex;
  *
  * @since 1.0
  */
-public class SimpleByteSource implements ByteSource {
+public class SimpleByteSource implements org.apache.shiro.util.ByteSource , java.io.Serializable   {
 
    
 	

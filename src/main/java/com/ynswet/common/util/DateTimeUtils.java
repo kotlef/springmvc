@@ -373,6 +373,23 @@ public class DateTimeUtils implements Serializable {
 
 		return new Timestamp(System.currentTimeMillis());
 	}
+	
+	/**
+	 * 
+	 * 函数功能说明:获取昨天的日期
+	 * @author 刘培琪 
+	 * @date 2015年10月23日
+	 * 修改者名字 修改日期
+	 * 修改内容
+	 * @param @return    
+	 * @return String   
+	 * @throws
+	 */
+	public static String getYesterDay(){
+		String operationtime = dateFormat.format(new java.util.Date(date.getTime()
+				- 24*60*60*1000));
+		return operationtime;
+	}
 
 
 

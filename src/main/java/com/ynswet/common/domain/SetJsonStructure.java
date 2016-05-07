@@ -1,5 +1,6 @@
 package com.ynswet.common.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Set;
  */
 public class SetJsonStructure<T extends Object> extends BaseJsonStructure{
 
-	private Set<T> rows;
+	private Set<T> rows= new HashSet<T>(0);
 
 	public Set<T> getRows() {
 		return rows;

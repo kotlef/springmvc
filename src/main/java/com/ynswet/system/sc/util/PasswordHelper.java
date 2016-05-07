@@ -1,10 +1,16 @@
 package com.ynswet.system.sc.util;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Component;
 
-import com.ynswet.system.sc.crypto.hash.SimpleHash;
 import com.ynswet.system.sc.domain.Userlogin;
 
 /**
@@ -29,9 +35,8 @@ public class PasswordHelper {
 
 		String newPassword = new SimpleHash(algorithmName,
 				userlogin.getPassword(),
-				ByteSource.Util.bytes(getCredentialsSalt(userlogin)),
+				new SimpleByteSource(getCredentialsSalt(userlogin)),
 				hashIterations).toHex();
-
 		userlogin.setPassword(newPassword);
 		return userlogin;
 	}
@@ -59,11 +64,50 @@ public class PasswordHelper {
 		 * String[] userloginname = new String[] { "商店", "王丽丽", "原勇", "张明坤",
 		 * "李玉鹏", "order", "王二", "wll", "kunoy", "admin", "李四", "张三" };
 		 */
-		String[] userloginname = new String[]{"18812345678","18800001234","18800008888","18800006666"};
-		for (String name : userloginname) {
-			String password = new SimpleHash(ph.algorithmName, "123",
+
+//		try {
+			// FileReader fr = new FileReader("E:\\1.txt");
+			// BufferedReader bufferedreader = new BufferedReader(fr);
+			// String instring;
+			// while ((instring = bufferedreader.readLine().trim()) != null) {
+			// if (0 != instring.length()) {
+			// System.out.println(instring);
+			// }
+			// }
+			// fr.close();
+
+//			BufferedReader br = new BufferedReader(
+//					new InputStreamReader(new FileInputStream("E:\\1.txt")));
+//
+//			for (String line = br.readLine(); line != null; line = br
+//					.readLine()) {
+//				String[] str = line.split("\\s+");
+//				//System.out.println(str[0] + "--|--" + str[1]);
+//				String password = new SimpleHash(ph.algorithmName, "123",
+//						ByteSource.Util.bytes(str[1] + salt), ph.hashIterations)
+//								.toHex();
+//				System.out.println("INSERT INTO `fd_d1`.`userlogin` (`LoginString`, `UID`, `Password`, `Salt`, `Status`) VALUES  ('"+str[1]+"','"+str[0]+"','"+password+"','"+salt+"','0');");
+//			}
+//			br.close();
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+		//test账户
+		String[] testUserloginname = new String[]{"18812345678", "18800001234",
+				"18800008888", "18800006666","18800007777","18812345679", "18800001235",
+				"18800008889", "18800006667","18800008899", "18800006688","18800007766","18800007755"};
+		//运营账户
+
+		String[] userloginname = new String[]{"18687524490", "18208868807",
+				"18087064716", "18988078987","18788491638","13378851254", "18208750024",
+				"13658891364"};
+
+		String[] appUsername = new String[]{"0000"};
+		for (String name : appUsername) {
+			String password = new SimpleHash(ph.algorithmName, "yuantian",
 					ByteSource.Util.bytes(name + salt), ph.hashIterations)
-					.toHex();
+							.toHex();
 			System.out.println(password);
 		}
 	}

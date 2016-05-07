@@ -73,4 +73,58 @@ public class StringUtils {
 			string = '"' + string + '"';
 		return string;
 	}
+	
+	/**
+	 * 获取权限编码
+	 * @param communityId
+	 * @param houseId
+	 * @return
+	 */
+	public static String getRightCode(int communityId,int houseId){
+		
+		return communityId+"-"+houseId;
+	}
+	
+	/**
+	 * 根据数组生成SQL匹配字符串
+	 * @param obj
+	 * @return
+	 */
+	public static String getSQLRegexp(int[] obj){
+		if(obj.length==0){
+			return null;
+		}
+		String result="";
+		for(int i=0;i<obj.length;i++){
+			result+="^"+obj[i]+"|";
+		}
+		if(!result.isEmpty()){
+			result=result.substring(0, result.length()-1);
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据数组生成SQL匹配字符串
+	 * @param obj
+	 * @return
+	 */
+	public static String getSQLRegexp(String[] obj){
+		if(obj.length==0){
+			return null;
+		}
+		String result="";
+		for(int i=0;i<obj.length;i++){
+			result+="^"+obj[i]+"|";
+		}
+		if(!result.isEmpty()){
+			result=result.substring(0, result.length()-1);
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getRightCode(52366,223));
+		System.out.println(getSQLRegexp(new String[]{"25","36"}));
+	}
 }

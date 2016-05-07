@@ -44,7 +44,9 @@
 	<mvc:annotation-driven
 		content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters register-defaults="true">
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" >
+				<constructor-arg value="UTF-8" index="0"></constructor-arg>
+			</bean>
 			<bean
 				class="org.springframework.http.converter.ResourceHttpMessageConverter" />
 			<bean
@@ -113,4 +115,28 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 配置RestTemplate -->
+	<bean id="pollingConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+		<property name="maxTotal" value="10" />
+		<property name="defaultMaxPerRoute" value="5" />
+	</bean>
+	<bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
+		factory-method="create">
+		<property name="connectionManager" ref="pollingConnectionManager" />
+	</bean>
+	<bean id="httpClient" factory-bean="httpClientBuilder"
+		factory-method="build" />
+	<!--Http client Factory -->
+	<bean id="httpClientFactory"	class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+		<constructor-arg ref="httpClient" />
+		<property name="connectTimeout" value="2000" />
+		<property name="readTimeout" value="2000" />
+	</bean>
+	
+	<!--RestTemplate -->
+	<bean id="restTemplate" class="com.ynswet.web.client.WebRestTemplate">
+		<constructor-arg ref="httpClientFactory" />
+	</bean>
+
 </beans>

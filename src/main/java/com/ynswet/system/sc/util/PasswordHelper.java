@@ -86,7 +86,7 @@ public class PasswordHelper {
 //				String password = new SimpleHash(ph.algorithmName, "123",
 //						ByteSource.Util.bytes(str[1] + salt), ph.hashIterations)
 //								.toHex();
-//				System.out.println("INSERT INTO `fd_d1`.`userlogin` (`LoginString`, `UID`, `Password`, `Salt`, `Status`) VALUES  ('"+str[1]+"','"+str[0]+"','"+password+"','"+salt+"','0');");
+//				System.out.println("INSERT INTO `d1`.`userlogin` (`LoginString`, `UID`, `Password`, `Salt`, `Status`) VALUES  ('"+str[1]+"','"+str[0]+"','"+password+"','"+salt+"','0');");
 //			}
 //			br.close();
 //		} catch (IOException e1) {

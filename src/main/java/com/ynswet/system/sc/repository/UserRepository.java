@@ -78,9 +78,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public Page<User> findByEmailLikeAndUidIn(String email,Collection<Integer> uids,Pageable pageable);
 
 	public Page<User> findByUserNameLikeAndUidIn(String userName,Collection<Integer> uids,Pageable pageable);
-
-	@Query(value = "select u from User u where u.cell = ?1 and u.uid not in (select c.uid from Customer c )")
-	User searchByCellAndUidNotInCustomer(String cell);
 	
 	@Query(value="select u from User u where (u.cell=?1 or u.idNo = ?1)")
 	public User findByItem(String value);

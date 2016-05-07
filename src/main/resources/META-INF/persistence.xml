@@ -4,11 +4,31 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="homecloud" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-
 		<!-- sc -->
+		<class>com.ynswet.system.sc.domain.Emp</class>
+		<class>com.ynswet.system.sc.domain.Homepage</class>
+		<class>com.ynswet.system.sc.domain.Menu</class>
+		<class>com.ynswet.system.sc.domain.Org</class>
+		<class>com.ynswet.system.sc.domain.Orggroup</class>
+		<class>com.ynswet.system.sc.domain.Orgrole</class>
+		<class>com.ynswet.system.sc.domain.OrgroleId</class>
+		<class>com.ynswet.system.sc.domain.OrgRes</class>
+		<class>com.ynswet.system.sc.domain.OrgResId</class>
+		<class>com.ynswet.system.sc.domain.Permission</class>
+		<class>com.ynswet.system.sc.domain.Post</class>
+		<class>com.ynswet.system.sc.domain.PostId</class>
+		<class>com.ynswet.system.sc.domain.Role</class>
+		<class>com.ynswet.system.sc.domain.RoleMenu</class>
+		<class>com.ynswet.system.sc.domain.RoleMenuId</class>
+		<class>com.ynswet.system.sc.domain.RolePermission</class>
+		<class>com.ynswet.system.sc.domain.RolePermissionId</class>
+		<class>com.ynswet.system.sc.domain.Station</class>
+		<class>com.ynswet.system.sc.domain.StationR</class>
+		<class>com.ynswet.system.sc.domain.StationRId</class>
+		<class>com.ynswet.system.sc.domain.StationRId</class>
+		<class>com.ynswet.system.sc.domain.Userlogin</class>
+		<class>com.ynswet.system.sc.domain.User</class>
 		<class>com.ynswet.system.sc.domain.Res</class>
-
-
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 	</persistence-unit>

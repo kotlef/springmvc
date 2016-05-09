@@ -66,7 +66,7 @@ public class PostRest extends BaseRest{
 	private RoleRepository roleRepository;
 	
 	/**
-	 * url:/ynlxcloud/post
+	 * url:/springmvc/post
 	 * 函数功能说明:保存岗位信息
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -90,7 +90,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/post/{postid}
+	 * url:/springmvc/post/{postid}
 	 * 函数功能说明:修改岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -113,7 +113,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/post/{postids}
+	 * url:/springmvc/post/{postids}
 	 * 函数功能说明:删除岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -138,7 +138,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/post
+	 * url:/springmvc/post
 	 * 函数功能说明:查询所有的岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -157,7 +157,7 @@ public class PostRest extends BaseRest{
 	}	
 	
 	/**
-	 * url:/ynlxcloud/post/toPage
+	 * url:/springmvc/post/toPage
 	 * 函数功能说明:分页查询所有的岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -182,7 +182,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/post/list/searchUserByOrgidAndRoleCode
+	 * url:/springmvc/post/list/searchUserByOrgidAndRoleCode
 	 * 函数功能说明
 	 * @author 张明坤 
 	 * @date 2015年6月18日
@@ -220,7 +220,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/post/list/searchUserByOrgCodeAndRoleCode
+	 * url:/springmvc/post/list/searchUserByOrgCodeAndRoleCode
 	 * 函数功能说明
 	 * @author 李玉鹏
 	 * @date 2015年7月20日

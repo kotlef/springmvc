@@ -65,7 +65,7 @@ public class OrgresRest extends BaseRest{
 	private OrgRepository orgRepository;
 	
 	/**
-	 * url:/ynlxcloud/orgres/
+	 * url:/springmvc/orgres/
 	 * 函数功能说明:为组织添加资源后保存到中间表orgres
 	 * @author 孙越 
 	 * @date 2015年8月10日
@@ -91,7 +91,7 @@ public class OrgresRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/orgres/searchResByOrgId/{}
+	 * url:/springmvc/orgres/searchResByOrgId/{}
 	 * 函数功能说明:查询组织下的资源
 	 * @author 孙越 
 	 * @date 2015年8月10日
@@ -137,7 +137,7 @@ public class OrgresRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/orgres/deleteResById
+	 * url:/springmvc/orgres/deleteResById
 	 * 函数功能说明:删除组织下的资源
 	 * @author 孙越 
 	 * @date 2015年8月10日

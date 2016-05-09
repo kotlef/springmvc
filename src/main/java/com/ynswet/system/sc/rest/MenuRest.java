@@ -280,7 +280,7 @@ public class MenuRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/menu/searchByRoleIds
+	 * url:/springmvc/menu/searchByRoleIds
 	 * 根据角色内码查询当前用户的菜单
 	 * @author 李玉鹏 
 	 * @date 2015年8月14日
@@ -301,7 +301,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/menu/searchByRoleIds
+	 * url:/springmvc/menu/searchByRoleIds
 	 * 根据角色内码查询当前用户的菜单
 	 * @author 李玉鹏
 	 * @date 2015年8月14日
@@ -328,7 +328,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/menu/serchByMenuId
+	 * url:/springmvc/menu/serchByMenuId
 	 * 根据菜单id查询parentid返回给跟多菜单模块
 	 * @author 李玉鹏
 	 * @date 2015年8月14日
@@ -346,7 +346,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/ynlxcloud/menu/serchByMenuId
+	 * url:/springmvc/menu/serchByMenuId
 	 * 根据菜单id查询parentid返回给跟多菜单模块
 	 * @author 李玉鹏
 	 * @date 2015年8月14日

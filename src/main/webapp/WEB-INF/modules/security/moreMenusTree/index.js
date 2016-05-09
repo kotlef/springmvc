@@ -38,7 +38,7 @@ function createMenu(config){
     if ($('#mainTabs').tabs('exists', title)){
         $('#mainTabs').tabs('select', title);
     }else{
-        var url = "/ynlxcloud/"+config.menuUrl;
+        var url = "/springmvc/"+config.menuUrl;
         var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
         $('#mainTabs').tabs('add',{
             title: config.text,
@@ -46,7 +46,7 @@ function createMenu(config){
             content:content,
             closable: true
         });
-        //$('#testFrame').context.location.href = "/ynlxcloud/"+config.menuUrl;
+        //$('#testFrame').context.location.href = "/springmvc/"+config.menuUrl;
     }
 }
 function refreshTreeMenu(){

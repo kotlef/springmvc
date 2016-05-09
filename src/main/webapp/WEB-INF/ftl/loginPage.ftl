@@ -73,7 +73,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/ie10-viewport-bug-workaround.js"></script>
 
-  <script src="/ynlxcloud/common/js.cookie.js"></script>
+  <script src="/springmvc/common/js.cookie.js"></script>
 
     <script type="text/javascript">
 		$(function() {
@@ -84,29 +84,7 @@
 			     $('#captchaImg').attr('src','./getCaptcha?' + Math.floor(Math.random() * 100)).fadeIn();
 		     	 //$("#capthchNumber").val(Cookies.get("captcha"));
 		     	});
-				//订单类型缓存到本地
-				$.ajax({
-					url:"http://localhost:8080/ynlxbusiness/billtype",
-					success: function(result){
-						for(var i=0;i<result.length;i++){
-							var wordbook=result[i];
-							var key=wordbook.billType;
-							window.localStorage.setItem(key,wordbook.billTypeName);
-						}
-					}
-				});
-		     	//字典缓存
-		    	  $.ajax({
-						  url: "http://localhost:8080/ynlxmainarchive/wordbook",
-						  success: function(result){
-						  		var rows=result.rows;
-								for(var i=0;i<rows.length;i++){
-									var wordbook=rows[i];
-									var key=wordbook.keyword+"_"+wordbook.wordValue;
-									 window.localStorage.setItem(key,wordbook.wordDisplay);
-								}
-						  }
-						});
+	
 	    });
 
 	    function do_encrypt(password,n,e) {
@@ -127,7 +105,7 @@
 		}
 
 		if(Cookies.get("homepageId")==undefined)
-		     	Cookies.set('homepageId', '0', { path: '/ynlxcloud' });
+		     	Cookies.set('homepageId', '0', { path: '/springmvc' });
 
     </script>
 </body>

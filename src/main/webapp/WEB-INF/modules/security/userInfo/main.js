@@ -204,7 +204,7 @@ function updatePassword(){
 				var editStatus = JSON.parse(result);
 				if(editStatus){
 					$.messager.alert('提示','密码修改成功，请重新登录!','info',function(){
-						window.top.location.href = "/ynlxcloud/logout";
+						window.top.location.href = "/springmvc/logout";
 					});
 				}else{
 					$.messager.alert('提示','密码修改失败,请核对原密码！','error');

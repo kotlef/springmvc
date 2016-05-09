@@ -74,7 +74,7 @@ public class OrgRest extends BaseRest{
 	private OrgResRepository orgResRepository;
 	
 	/**
-	 * url:/ynlxcloud/org
+	 * url:/springmvc/org
 	 * 函数功能说明:保存组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -128,7 +128,7 @@ public class OrgRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/ynlxcloud/org/{orgid}
+	 * url:/springmvc/org/{orgid}
 	 * 函数功能说明
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -201,7 +201,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url:/ynlxcloud/org/{orgids}
+	 * url:/springmvc/org/{orgids}
 	 * 函数功能说明:删除组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -226,7 +226,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url:/ynlxcloud/org
+	 * url:/springmvc/org
 	 * 函数功能说明:查询所有的组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -245,7 +245,7 @@ System.out.println(orgRess);
 	}	
 	
 	/**
-	 * url:/ynlxcloud/org/toPage
+	 * url:/springmvc/org/toPage
 	 * 函数功能说明:分页查询所有的组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -269,7 +269,7 @@ System.out.println(orgRess);
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/org/serchByParentId
+	 * url:/springmvc/org/serchByParentId
 	 * 函数功能说明:根据prentId查询组织
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -316,7 +316,7 @@ System.out.println(orgRess);
 		return orgList;
 	}
 	/**
-	 * url:/ynlxcloud/org/searchaByValue
+	 * url:/springmvc/org/searchaByValue
 	 * 函数功能说明:条件查询
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -340,7 +340,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url：/ynlxcloud/org/findOrgByParentIds/{parentIds}
+	 * url：/springmvc/org/findOrgByParentIds/{parentIds}
 	 * 函数功能说明:查询当前用户所在组织下的组织
 	 * @author 张毕思 
 	 * @date 2015年10月26日
@@ -368,7 +368,7 @@ System.out.println(orgRess);
 		return orgList;
 	}
 	/**
-	 * rul:/ynlxcloud/org/findNoteId
+	 * rul:/springmvc/org/findNoteId
 	 * 函数功能说明:查询父节点下的所有子节点
 	 * @author 张毕思 
 	 * @date 2015年10月26日
@@ -393,7 +393,7 @@ System.out.println(orgRess);
 		return set;
 	}
 	/**
-	 * url:/ynlxcloud/org/searchByParentIdAndStatus
+	 * url:/springmvc/org/searchByParentIdAndStatus
 	 * 函数功能说明:根据状态查询组织
 	 * @author 张毕思 
 	 * @date 2015年12月22日

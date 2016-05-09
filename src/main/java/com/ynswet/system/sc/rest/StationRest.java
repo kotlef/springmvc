@@ -194,7 +194,7 @@ public class StationRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/role/searchByKeyValueLike/params
+	 * url:/springmvc/role/searchByKeyValueLike/params
 	 * 搜索服务站功能
 	 * @author 孟话然
 	 * @date 2015年8月4日

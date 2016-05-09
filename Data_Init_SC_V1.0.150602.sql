@@ -52,9 +52,9 @@ DELETE FROM `D1`.`user` WHERE `UID`='10000002';
 DELETE FROM `D1`.`user` WHERE `UID`='10000003';
 DELETE FROM `D1`.`user` WHERE `UID`='10000004';
 INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000001', '测试用户', '0', '0', '1', '18812345678', '18812345678@qq.com', '18812345678');
-INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000002', '测试用户', '0', '0', '1', '18800001234', '18800001234@qq.com', '18800001234');
-INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000003', '测试用户', '0', '0', '1', '18800001234', '18800008888@qq.com', '18800008888');
-INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000004', '测试用户', '0', '0', '1', '18800001234', '18800006666@qq.com', '18800006666');
+INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000002', '测试用户', '0', '0', '2', '18800001234', '18800001234@qq.com', '18800001234');
+INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000003', '测试用户', '0', '0', '3', '18800001234', '18800008888@qq.com', '18800008888');
+INSERT INTO `D1`.`user` (`UID`, `User_Name`, `User_Type`, `ID_Type`, `ID_NO`, `CELL`, `EMAIL`, `CELL2`) VALUES ('10000004', '测试用户', '0', '0', '4', '18800001234', '18800006666@qq.com', '18800006666');
 
 DELETE FROM `D1`.`userlogin` WHERE `LoginString`='18812345678';
 DELETE FROM `D1`.`userlogin` WHERE `LoginString`='18800001234';

@@ -52,7 +52,7 @@ public class ResRest {
 	@Autowired
 	private ResRepository resRepository;
 	/**
-	 * url:/ynlxcloud/res/
+	 * url:/springmvc/res/
 	 * 函数功能说明:添加资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -96,7 +96,7 @@ public class ResRest {
 	}
 	
 	/**
-	 * url:/ynlxcloud/res/{resIds}
+	 * url:/springmvc/res/{resIds}
 	 * 函数功能说明:删除资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -120,7 +120,7 @@ public class ResRest {
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/res/
+	 * url:/springmvc/res/
 	 * 函数功能说明：查询所有的资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -140,7 +140,7 @@ public class ResRest {
 	}
 	
 	/**
-	 *url:/ynlxcloud/res/toPage
+	 *url:/springmvc/res/toPage
 	 * 函数功能说明:分页查询
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -165,7 +165,7 @@ public class ResRest {
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/searchByRtype/toPage
+	 * url:/springmvc/searchByRtype/toPage
 	 * 函数功能说明:按条件查询资源
 	 * @author 孙越 
 	 * @date 2015年8月11日

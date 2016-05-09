@@ -97,7 +97,7 @@
 							<a href="modules/security/userInfo/index.html" target="fpage">我的资料</a>
 						</li>
                         <li>
-							<a href="/ynlxcloud/logout" target="_parent" >退出</a>
+							<a href="/springmvc/logout" target="_parent" >退出</a>
 						</li>
 					</ul>
   </div>

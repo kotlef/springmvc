@@ -140,7 +140,7 @@ public class EmpRest extends BaseRest{
 	}
 	
 	/**
-	 * url：/ynlxcloud/emp/{uid}
+	 * url：/springmvc/emp/{uid}
 	 * 函数功能说明:更新员工信息
 	 * @author 李玉鹏
 	 * @date 2015年5月23日
@@ -222,7 +222,7 @@ public class EmpRest extends BaseRest{
 	}
 
 	/**
-	 * url：/ynlxcloud/emp/toPage
+	 * url：/springmvc/emp/toPage
 	 * 函数功能说明:分页查询员工
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -247,7 +247,7 @@ public class EmpRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/ynlxcloud/emp/searchBykeyValue/toPage
+	 * url:/springmvc/emp/searchBykeyValue/toPage
 	 * 函数功能说明:条件查询实现分页
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -271,7 +271,7 @@ public class EmpRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url::/ynlxcloud/emp/searchEmpInOrgids
+	 * url::/springmvc/emp/searchEmpInOrgids
 	 * 函数功能说明:查询组织下的所有员工
 	 * @author 张毕思 
 	 * @date 2016年1月18日

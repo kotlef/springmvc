@@ -15,12 +15,8 @@
 	      })
 	 </script>
 	<FRAMESET rows=50,* cols=* bordercolor='#006699' border=1 >
- 		<FRAME id=topFrame name=topFrame src="/springmvc/nav" noResize scrolling=no  target="fpage">
-    	<#if homepage !="-1">
-    	<FRAME name=main src="common/edb_bar/topIndex.html?urlStr=${homepage}">
-    	<#else>
+ 		<FRAME id=topFrame name=topFrame src="nav" noResize scrolling=no  target="fpage">
     	<FRAME name=main src="">
-    	</#if>
  		<NOFRAMES>
  		</NOFRAMES>
 	</FRAMESET>

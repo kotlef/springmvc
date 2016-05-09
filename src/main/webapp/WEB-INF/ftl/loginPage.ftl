@@ -73,7 +73,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="bootstrap/assets/ie10-viewport-bug-workaround.js"></script>
 
-  <script src="/springmvc/common/js.cookie.js"></script>
+  <script src="./common/js.cookie.js"></script>
 
     <script type="text/javascript">
 		$(function() {

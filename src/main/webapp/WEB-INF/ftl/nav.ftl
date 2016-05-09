@@ -74,30 +74,14 @@
   </div>
   <div class="col-md-3">
   		<ul class="nav navbar-nav navbar-right">
-  					<!--原来的更多菜单先注释
-                   	 <li>
-		                   <div id="nav_more" class="nav_more">
-										<ul  id="more_menu_ul">
-											<li>
-												<a id="more_href" href="javascript:void(0);"><b id="icon_more" class="glyphicon glyphicon-triangle-left">更多</b></a>
-												<ul>
-													<li><a href="#">菜单一</a></li>
-													<li><a href="#">菜单二</a></li>
-													<li><a href="#">菜单三</a></li>
-												</ul>
-											</li>
-										</ul>
-								</div>
-						</li>
-						-->
 						<li onclick='removeClassOnClick(this.id)' class="active" id='index_more_menu'>
-							<a href="modules/security/moreMenusTree/index.html" target="fpage">更多菜单</a>
+							<a href="" target="fpage">更多菜单</a>
 						</li>
 						<li onclick='removeClassOnClick(this.id)' class="active" id='index_system_set'>
-							<a href="modules/security/userInfo/index.html" target="fpage">我的资料</a>
+							<a href="" target="fpage">我的资料</a>
 						</li>
                         <li>
-							<a href="/springmvc/logout" target="_parent" >退出</a>
+							<a href="logout" target="_parent" >退出</a>
 						</li>
 					</ul>
   </div>

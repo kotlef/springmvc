@@ -33,4 +33,6 @@ public interface UserloginRepository extends JpaRepository<Userlogin, String> {
 
 	public List<Userlogin> findByUid(Integer uid);
 	public List<Userlogin> findByUidIn(Integer[] uids);
+
+	Userlogin findByLoginString(String cell);
 }

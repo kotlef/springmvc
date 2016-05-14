@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.BeanUtils;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Homepage;
@@ -33,7 +33,7 @@ import com.ynswet.system.sc.repository.RoleRepository;
 
 @RestController
 @RequestMapping(value="/orgrole")
-public class OrgroleRest extends BaseRest{
+public class OrgroleRest extends BaseRest {
 	@Autowired
 	private OrgroleRepository orgroleRepository;
 	@Autowired

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.BeanUtils;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Homepage;
@@ -59,7 +59,7 @@ import com.ynswet.system.sc.service.RoleService;
  */
 @RestController
 @RequestMapping("/role")
-public class RoleRest extends BaseRest{
+public class RoleRest extends BaseRest {
 
 	@Autowired
 	private RoleService roleService;
@@ -77,7 +77,7 @@ public class RoleRest extends BaseRest{
 	private HomepageRepository homepageRepository;
 	
 	/**
-	 * url:/springmvc/role
+	 * url:/ynlxhealth/role
 	 * 函数功能说明:保存角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -100,7 +100,7 @@ public class RoleRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/role/{roleId}
+	 * url:/ynlxhealth/role/{roleId}
 	 * 函数功能说明:修改角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -124,7 +124,7 @@ public class RoleRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/role/{roleIds}
+	 * url:/ynlxhealth/role/{roleIds}
 	 * 函数功能说明:删除角色
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -162,7 +162,7 @@ public class RoleRest extends BaseRest{
 
 
 	/**
-	 * url:/springmvc/role
+	 * url:/ynlxhealth/role
 	 * 函数功能说明:查询所有的角色
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -182,7 +182,7 @@ public class RoleRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/role/toPage
+	 * url:/ynlxhealth/role/toPage
 	 * 函数功能说明:分页查询角色
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -243,7 +243,7 @@ public class RoleRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/springmvc/role/searchByStatus/ToPage
+	 * url:/ynlxhealth/role/searchByStatus/ToPage
 	 * 函数功能说明:查询正常的角色
 	 * @author 张毕思 
 	 * @date 2015年12月25日
@@ -282,7 +282,7 @@ public class RoleRest extends BaseRest{
 	
 
 	/**
-	 * url:/springmvc/role/searchByKeyValueLike/params
+	 * url:/ynlxhealth/role/searchByKeyValueLike/params
 	 * 搜索角色功能
 	 * @author 孟话然
 	 * @date 2015年7月21日

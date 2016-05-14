@@ -14,10 +14,10 @@
 	      	 })
 	      })
 	 </script>
-	<FRAMESET rows=50,* cols=* bordercolor='#006699' border=1 >
- 		<FRAME id=topFrame name=topFrame src="nav" noResize scrolling=no  target="fpage">
-    	<FRAME name=main src="">
- 		<NOFRAMES>
- 		</NOFRAMES>
-	</FRAMESET>
+<FRAMESET rows=50,* cols=* bordercolor='#006699' border=1 >
+    <FRAME id=topFrame name=topFrame src="nav" noResize scrolling=no  target="fpage">
+    <FRAME name=fpage src="${homepage}">
+    <NOFRAMES>
+    </NOFRAMES>
+</FRAMESET>
 </html>

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.BeanUtils;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Res;
@@ -52,7 +52,7 @@ import com.ynswet.system.sc.service.StationService;
  */
 @RestController
 @RequestMapping("/station")
-public class StationRest extends BaseRest{
+public class StationRest extends BaseRest {
 	
 	@Autowired
 	private StationService stationService;
@@ -194,7 +194,7 @@ public class StationRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/springmvc/role/searchByKeyValueLike/params
+	 * url:/ynlxhealth/role/searchByKeyValueLike/params
 	 * 搜索服务站功能
 	 * @author 孟话然
 	 * @date 2015年8月4日

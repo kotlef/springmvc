@@ -3,6 +3,7 @@ package com.ynswet.system.sc.rest;
 
 import java.util.List;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Station;
 import com.ynswet.system.sc.domain.StationR;
@@ -39,7 +39,7 @@ import com.ynswet.system.sc.repository.StationRRepository;
  */
 @RestController
 @RequestMapping("/stationR")
-public class StationRRest extends BaseRest{
+public class StationRRest extends BaseRest {
 	
 	
 	@Autowired

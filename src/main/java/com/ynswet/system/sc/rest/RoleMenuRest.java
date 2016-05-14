@@ -12,6 +12,7 @@ package com.ynswet.system.sc.rest;
 
 import java.util.List;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.RoleMenu;
 import com.ynswet.system.sc.domain.RoleMenuId;
@@ -42,7 +42,7 @@ import com.ynswet.system.sc.repository.RoleMenuRepository;
 */
 @RestController
 @RequestMapping("/roleMenu")
-public class RoleMenuRest extends BaseRest{
+public class RoleMenuRest extends BaseRest {
 	
 	@Autowired
 	private RoleMenuRepository roleMenuRepository;

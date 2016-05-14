@@ -17,7 +17,7 @@ public class PushConfig {
 	
 	private final static  String  JPUSH_PUSH_API="/ynlxmsgpush/msg/jpush";
 	
-	private final static  String  PUSH_HOST="http://localhost:8080";
+	private final static  String  PUSH_HOST="http://localhost:8090";
 	
 	private String pushHost=PUSH_HOST;
 

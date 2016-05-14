@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.ynswet.common.rest.BaseRest;
+import com.ynswet.system.sc.repository.UserRepository;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -27,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.code.kaptcha.Producer;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.system.sc.domain.Homepage;
 import com.ynswet.system.sc.domain.Menu;
 import com.ynswet.system.sc.domain.Org;
@@ -207,7 +208,8 @@ public class SystemCommonController extends BaseRest {
 	}
 
 
-
+	@Autowired
+	private UserRepository userRepository;
 
 
 	/**
@@ -221,22 +223,25 @@ public class SystemCommonController extends BaseRest {
 	 * @return String
 	 */
 
-	@RequestMapping(value="/changePassword",method=RequestMethod.POST)
+	@RequestMapping(value="/changePassword",method = RequestMethod.POST)
 	@ResponseBody
 	public String changePassword(
+			@RequestParam("uid") Integer uid,
+			@RequestParam("openid") String openid,
 			@RequestParam("oldPassword") String oldPassword,
 			@RequestParam("newPassword") String newPassword) {
+		User user = userRepository.findByUidAndOpenid(uid,openid);
 		CacheManager cm=ehCacheManager.getCacheManager();
 		Cache cache=cm.getCache("shiroAuthenticationCache");
-		CommonVariableModel cvm=SystemVariableUtils.getCommonVariableModel();
-		Userlogin userlogin =cvm.getUserlogin();
-		if (userManager.updateUserPassword(oldPassword, newPassword)) {
-			Integer uid=userlogin.getUid();
-			List<Userlogin> userlogins=userloginRepository.findByUid(uid);
-			for(Userlogin ul:userlogins){
-				cache.remove(ul.getLoginString());
+		if(user!=null){
+			if (userManager.updateUserPassword(oldPassword, newPassword)) {
+				Integer uid1 = user.getUid();
+				List<Userlogin> userlogins=userloginRepository.findByUid(uid1);
+				for(Userlogin ul:userlogins){
+					cache.remove(ul.getLoginString());
+				}
+				return "true";
 			}
-			return "true";
 		}
 		return "false";
 	}

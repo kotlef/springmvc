@@ -13,6 +13,7 @@ package com.ynswet.system.sc.rest;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.system.sc.domain.Menu;
 import com.ynswet.system.sc.repository.MenuRepository;
 import com.ynswet.system.sc.service.MenuService;
@@ -46,7 +46,7 @@ import com.ynswet.system.sc.service.MenuService;
  */
 @RestController
 @RequestMapping("/menu")
-public class MenuRest extends BaseRest{
+public class MenuRest extends BaseRest {
 	
 	@Autowired
 	private MenuRepository menuRepository;
@@ -280,7 +280,7 @@ public class MenuRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/menu/searchByRoleIds
+	 * url:/ynlxhealth/menu/searchByRoleIds
 	 * 根据角色内码查询当前用户的菜单
 	 * @author 李玉鹏 
 	 * @date 2015年8月14日
@@ -301,7 +301,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/menu/searchByRoleIds
+	 * url:/ynlxhealth/menu/searchByRoleIds
 	 * 根据角色内码查询当前用户的菜单
 	 * @author 李玉鹏
 	 * @date 2015年8月14日
@@ -328,7 +328,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/menu/serchByMenuId
+	 * url:/ynlxhealth/menu/serchByMenuId
 	 * 根据菜单id查询parentid返回给跟多菜单模块
 	 * @author 李玉鹏
 	 * @date 2015年8月14日
@@ -346,7 +346,7 @@ public class MenuRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/menu/serchByMenuId
+	 * url:/ynlxhealth/menu/serchByMenuId
 	 * 根据菜单id查询parentid返回给跟多菜单模块
 	 * @author 李玉鹏
 	 * @date 2015年8月14日

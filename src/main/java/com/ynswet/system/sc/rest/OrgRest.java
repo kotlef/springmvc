@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Org;
 import com.ynswet.system.sc.domain.OrgRes;
@@ -56,7 +56,7 @@ import com.ynswet.system.sc.service.OrgService;
  */
 @RestController
 @RequestMapping("/org")
-public class OrgRest extends BaseRest{
+public class OrgRest extends BaseRest {
 	
 	@Autowired
 	private OrgRepository orgRepository;
@@ -74,7 +74,7 @@ public class OrgRest extends BaseRest{
 	private OrgResRepository orgResRepository;
 	
 	/**
-	 * url:/springmvc/org
+	 * url:/ynlxhealth/org
 	 * 函数功能说明:保存组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -128,7 +128,7 @@ public class OrgRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/org/{orgid}
+	 * url:/ynlxhealth/org/{orgid}
 	 * 函数功能说明
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -201,7 +201,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url:/springmvc/org/{orgids}
+	 * url:/ynlxhealth/org/{orgids}
 	 * 函数功能说明:删除组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -226,7 +226,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url:/springmvc/org
+	 * url:/ynlxhealth/org
 	 * 函数功能说明:查询所有的组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -245,7 +245,7 @@ System.out.println(orgRess);
 	}	
 	
 	/**
-	 * url:/springmvc/org/toPage
+	 * url:/ynlxhealth/org/toPage
 	 * 函数功能说明:分页查询所有的组织
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -269,7 +269,7 @@ System.out.println(orgRess);
 		return json;
 	}
 	/**
-	 * url:/springmvc/org/serchByParentId
+	 * url:/ynlxhealth/org/serchByParentId
 	 * 函数功能说明:根据prentId查询组织
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -316,7 +316,7 @@ System.out.println(orgRess);
 		return orgList;
 	}
 	/**
-	 * url:/springmvc/org/searchaByValue
+	 * url:/ynlxhealth/org/searchaByValue
 	 * 函数功能说明:条件查询
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -340,7 +340,7 @@ System.out.println(orgRess);
 	}
 	
 	/**
-	 * url：/springmvc/org/findOrgByParentIds/{parentIds}
+	 * url：/ynlxhealth/org/findOrgByParentIds/{parentIds}
 	 * 函数功能说明:查询当前用户所在组织下的组织
 	 * @author 张毕思 
 	 * @date 2015年10月26日
@@ -368,7 +368,7 @@ System.out.println(orgRess);
 		return orgList;
 	}
 	/**
-	 * rul:/springmvc/org/findNoteId
+	 * rul:/ynlxhealth/org/findNoteId
 	 * 函数功能说明:查询父节点下的所有子节点
 	 * @author 张毕思 
 	 * @date 2015年10月26日
@@ -393,7 +393,7 @@ System.out.println(orgRess);
 		return set;
 	}
 	/**
-	 * url:/springmvc/org/searchByParentIdAndStatus
+	 * url:/ynlxhealth/org/searchByParentIdAndStatus
 	 * 函数功能说明:根据状态查询组织
 	 * @author 张毕思 
 	 * @date 2015年12月22日

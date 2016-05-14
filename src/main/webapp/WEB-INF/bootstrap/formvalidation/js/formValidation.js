@@ -2439,7 +2439,7 @@ if (typeof jQuery === 'undefined') {
          * @param {String} value
          * @returns {Boolean}
          */
-        mod11And10: function(value) {
+        mohealth_fd1Anhealth_fd0: function(value) {
             var check  = 5,
                 length = value.length;
             for (var i = 0; i < length; i++) {
@@ -5470,7 +5470,7 @@ if (typeof jQuery === 'undefined') {
             if (!/^[0-9]{11}$/.test(value)) {
                 return false;
             }
-            return FormValidation.Helper.mod11And10(value);
+            return FormValidation.Helper.mohealth_fd1Anhealth_fd0(value);
         },
 
         /**
@@ -8138,7 +8138,7 @@ if (typeof jQuery === 'undefined') {
                 return false;
             }
 
-            return FormValidation.Helper.mod11And10(value);
+            return FormValidation.Helper.mohealth_fd1Anhealth_fd0(value);
         },
 
         /**
@@ -8470,7 +8470,7 @@ if (typeof jQuery === 'undefined') {
                 return false;
             }
 
-            return FormValidation.Helper.mod11And10(value);
+            return FormValidation.Helper.mohealth_fd1Anhealth_fd0(value);
         },
 
         /**

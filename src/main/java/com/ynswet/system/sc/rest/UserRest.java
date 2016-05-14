@@ -15,21 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Res;
 import com.ynswet.system.sc.domain.User;
@@ -60,7 +55,7 @@ import net.sf.ehcache.CacheManager;
  */
 @RestController
 @RequestMapping("/user")
-public class UserRest extends BaseRest{
+public class UserRest extends BaseRest {
 
 	@Autowired
 	private UserService userService;
@@ -80,8 +75,55 @@ public class UserRest extends BaseRest{
 	@Autowired
 	private EhCacheManager ehCacheManager;
 
+
 	/**
-	 * url：/springmvc/user
+	 * 当前用户修改密码
+	 *
+	 * @param oldPassword
+	 *            旧密码
+	 * @param newPassword
+	 *            新密码
+	 *
+	 * @return String
+	 */
+
+	@RequestMapping(value="/changePassword",method = RequestMethod.POST)
+	@ResponseBody
+	public SingleJsonStructure changePassword(
+			@RequestParam("uid") Integer uid,
+			@RequestParam("openid") String openid,
+			@RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword) {
+		SingleJsonStructure json = new SingleJsonStructure();
+		User user = userRepository.findByUidAndOpenid(uid,openid);
+		if(user!=null){
+			Userlogin userlogin = userloginRepository.findByLoginString(user.getCell());
+			String pwd = passwordHelper.getPassword(userlogin, oldPassword);
+			if (pwd.equals(userlogin.getPassword())) {
+				List<Userlogin> userloginList = userloginRepository.findByUid(userlogin.getUid());
+				for (Userlogin ul : userloginList) {
+					ul.setPassword(newPassword);
+					passwordHelper.encryptPassword(ul);
+					userloginRepository.save(ul);
+				}
+				userloginRepository.flush();
+				json.setSuccess(true);
+				json.setMsg("密码修改成功");
+			}else{
+				json.setSuccess(false);
+				json.setMsg("原密码错误");
+			}
+		}else{
+			json.setSuccess(false);
+			json.setMsg("用户不存在");
+		}
+		return json;
+	}
+
+
+
+	/**
+	 * url：/ynlxhealth/user
 	 * 函数功能说明:添加用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -125,51 +167,9 @@ public class UserRest extends BaseRest{
 		}
 		return json;
 	}
+
 	/**
-	 * url:/springmvc/user/{uid}
-	 * 函数功能说明:更新用户
-	 * @author 李玉鹏
-	 * @date 2015年5月13日
-	 * 修改者名字 修改日期
-	 * 修改内容
-	 * @param @param user
-	 * @param @return   
-	 * @return SingleJsonStructure   
-	 * @throws
-	 */
-	@RequestMapping(value="/update/{uid}",method = RequestMethod.POST)
-	public SingleJsonStructure updateUser(@PathVariable Integer uid,@ModelAttribute User user) {
-		SingleJsonStructure json = new SingleJsonStructure();
-		//User checkEmail = userRepository.findByEmailAndUidNot(user.getEmail(),uid);
-		User checkIdNo = userRepository.findByIdNoAndUidNot(user.getIdNo(),uid);
-		User checkCell = userRepository.findByCellAndUidNot(user.getCell(),uid);
-		if(checkIdNo != null){
-			json.setMsg(BaseRest.UPDATE_FAILURE);
-			json.setSuccess(false);
-			json.setRows("idNo");
-			return json;
-		}else if(checkCell != null){
-			json.setMsg(BaseRest.UPDATE_FAILURE);
-			json.setSuccess(false);
-			json.setRows("cell");
-			return json;
-		}
-		User oldUsr = userRepository.findOne(uid);
-		user.setModifyTime(DateTimeUtils.getSystemCurrentTimeMillis());
-		user.setCreateTime(oldUsr.getCreateTime());
-		user.setSecPassword(oldUsr.getSecPassword());
-		user.setBindPassword(oldUsr.getBindPassword());
-		if(user.getStatus()==null){
-			user.setStatus("0");
-		}
-		User updateUser = userRepository.saveAndFlush(user);
-		json.setMsg(BaseRest.UPDATE_SUCCESS);
-		json.setRows(updateUser.getUid());
-		System.out.println("修改房屋住户成员------------------"+json.getRows());
-		return json; 
-	}
-	/**
-	 * url:/springmvc/user/{uids}
+	 * url:/ynlxhealth/user/{uids}
 	 * 函数功能说明:删除用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -201,7 +201,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user
+	 * url:/ynlxhealth/user
 	 * 函数功能说明:查询所有的用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -241,7 +241,7 @@ public class UserRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/user/toPage
+	 * url:/ynlxhealth/user/toPage
 	 * 函数功能说明:分页查询用户
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -266,7 +266,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/items/toPage
+	 * url:/ynlxhealth/user/items/toPage
 	 * 函数功能说明:根据条件分页查询用户
 	 * @author 李玉鹏
 	 * @date 2015年5月25日
@@ -382,7 +382,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/checkEmail
+	 * url:/ynlxhealth/user/checkEmail
 	 * 函数功能说明:检查用户邮箱唯一性
 	 * @author 李玉鹏
 	 * @date 2015年5月27日
@@ -404,7 +404,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/checkCell
+	 * url:/ynlxhealth/user/checkCell
 	 * 函数功能说明:检查用户联系手机唯一性
 	 * @author 李玉鹏
 	 * @date 2015年5月27日
@@ -426,7 +426,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/checkIdNo
+	 * url:/ynlxhealth/user/checkIdNo
 	 * 函数功能说明:检查用户证件号唯一性
 	 * @author 李玉鹏
 	 * @date 2015年5月27日
@@ -477,7 +477,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/{uid}
+	 * url:/ynlxhealth/user/{uid}
 	 * 函数功能说明:更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -500,7 +500,7 @@ public class UserRest extends BaseRest{
 	}
 	
 	/**
-	 * url：/springmvc/user/addUser/{}
+	 * url：/ynlxhealth/user/addUser/{}
 	 * 函数功能说明:为客户添加成员
 	 * @author 孙越
 	 * @date 2015年7月29日
@@ -538,7 +538,7 @@ public class UserRest extends BaseRest{
 		return uid;
 	}
 	/**
-	 * url:ynlxcloud/user/
+	 * url:ynlxhealth/user/
 	 * 函数功能说明：为房屋添加住户
 	 * @author 孙越 
 	 * @date 2015年8月22日
@@ -561,7 +561,7 @@ public class UserRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url：/springmvc/user
+	 * url：/ynlxhealth/user
 	 * 函数功能说明:查询房屋下的用户
 	 * @author 孙越
 	 * @date 2015年7月30日
@@ -731,7 +731,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/update/{uid}
+	 * url:/ynlxhealth/user/update/{uid}
 	 * 函数功能说明:业务办理更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -772,7 +772,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/update/{uid}
+	 * url:/ynlxhealth/user/update/{uid}
 	 * 函数功能说明:业务办理更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -802,7 +802,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/update/{uid}
+	 * url:/ynlxhealth/user/update/{uid}
 	 * 函数功能说明:业务办理更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日
@@ -828,7 +828,7 @@ public class UserRest extends BaseRest{
 	}
 
 	/**
-	 * url:/springmvc/user/update/{uid}
+	 * url:/ynlxhealth/user/update/{uid}
 	 * 函数功能说明:业务办理更新用户
 	 * @author 李玉鹏
 	 * @date 2015年5月13日

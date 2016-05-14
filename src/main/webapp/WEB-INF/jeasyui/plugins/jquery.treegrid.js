@@ -758,16 +758,16 @@ _ca.push("</div></td></tr>");
 _ca.push("</tbody></table>");
 return _ca;
 };
-},renderFooter:function(_cf,_d0,_d1){
+},renderFooter:function(_cf,_d0,_health_fd){
 var _d2=$.data(_cf,"treegrid").options;
 var _d3=$.data(_cf,"treegrid").footer||[];
-var _d4=$(_cf).datagrid("getColumnFields",_d1);
+var _d4=$(_cf).datagrid("getColumnFields",_health_fd);
 var _d5=["<table class=\"datagrid-ftable\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody>"];
 for(var i=0;i<_d3.length;i++){
 var row=_d3[i];
 row[_d2.idField]=row[_d2.idField]||("foot-row-id"+i);
 _d5.push("<tr class=\"datagrid-row\" node-id=\""+row[_d2.idField]+"\">");
-_d5.push(this.renderRow.call(this,_cf,_d4,_d1,0,row));
+_d5.push(this.renderRow.call(this,_cf,_d4,_health_fd,0,row));
 _d5.push("</tr>");
 }
 _d5.push("</tbody></table>");

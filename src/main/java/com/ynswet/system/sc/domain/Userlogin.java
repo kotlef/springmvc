@@ -21,6 +21,11 @@ public class Userlogin implements java.io.Serializable {
 	private String loginString;
 
 	/**
+	 * 用户类型（0：超级管理员，1：普通管理员，2：普通用户.
+	 */
+	private String userType;
+
+	/**
 	 * 用户内码.
 	 */
 	private Integer uid;
@@ -69,6 +74,15 @@ public class Userlogin implements java.io.Serializable {
 		this.loginString = loginString;
 	}
 
+	@Column(name = "User_Type", nullable = false, length = 1)
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
 	@Column(name = "UID")
 	public Integer getUid() {
 		return this.uid;
@@ -110,6 +124,8 @@ public class Userlogin implements java.io.Serializable {
 
 		buffer.append(getClass().getName()).append("@").append(" [");
 		buffer.append("loginString").append("='").append(getLoginString())
+				.append("' ");
+		buffer.append("userType").append("='").append(getUserType())
 				.append("' ");
 		buffer.append("uid").append("='").append(getUid()).append("' ");
 		buffer.append("password").append("='").append(getPassword())

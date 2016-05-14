@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ynswet.common.domain.ListJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.BeanUtils;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Emp;

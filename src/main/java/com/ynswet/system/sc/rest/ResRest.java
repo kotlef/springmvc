@@ -12,6 +12,7 @@ package com.ynswet.system.sc.rest;
 
 import java.util.List;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Res;
 import com.ynswet.system.sc.repository.ResRepository;
@@ -52,7 +52,7 @@ public class ResRest {
 	@Autowired
 	private ResRepository resRepository;
 	/**
-	 * url:/springmvc/res/
+	 * url:/ynlxhealth/res/
 	 * 函数功能说明:添加资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -72,7 +72,7 @@ public class ResRest {
 		return json;
 	}
 	/**
-	 * url:ynlxcloud/res/{resId}
+	 * url:ynlxhealth/res/{resId}
 	 * 函数功能说明:更新资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -96,7 +96,7 @@ public class ResRest {
 	}
 	
 	/**
-	 * url:/springmvc/res/{resIds}
+	 * url:/ynlxhealth/res/{resIds}
 	 * 函数功能说明:删除资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -120,7 +120,7 @@ public class ResRest {
 		return json;
 	}
 	/**
-	 * url:/springmvc/res/
+	 * url:/ynlxhealth/res/
 	 * 函数功能说明：查询所有的资源
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -140,7 +140,7 @@ public class ResRest {
 	}
 	
 	/**
-	 *url:/springmvc/res/toPage
+	 *url:/ynlxhealth/res/toPage
 	 * 函数功能说明:分页查询
 	 * @author 孙越 
 	 * @date 2015年8月5日
@@ -165,7 +165,7 @@ public class ResRest {
 		return json;
 	}
 	/**
-	 * url:/springmvc/searchByRtype/toPage
+	 * url:/ynlxhealth/searchByRtype/toPage
 	 * 函数功能说明:按条件查询资源
 	 * @author 孙越 
 	 * @date 2015年8月11日

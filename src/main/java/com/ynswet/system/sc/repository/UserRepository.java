@@ -84,4 +84,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Modifying
 	@Query(value="delete from User u where u.uid in ?1")
 	public void delete(Integer[] uids);
+
+	public User findByUidAndOpenid(Integer uid, String openid);
 }

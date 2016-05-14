@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 
@@ -32,7 +33,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Emp;
 import com.ynswet.system.sc.domain.User;
@@ -60,7 +60,7 @@ import com.ynswet.system.sc.util.SystemVariableUtils;
  */
 @RestController
 @RequestMapping("/emp")
-public class EmpRest extends BaseRest{
+public class EmpRest extends BaseRest {
 
 	@Autowired
 	private EmpService empService;
@@ -140,7 +140,7 @@ public class EmpRest extends BaseRest{
 	}
 	
 	/**
-	 * url：/springmvc/emp/{uid}
+	 * url：/ynlxhealth/emp/{uid}
 	 * 函数功能说明:更新员工信息
 	 * @author 李玉鹏
 	 * @date 2015年5月23日
@@ -222,7 +222,7 @@ public class EmpRest extends BaseRest{
 	}
 
 	/**
-	 * url：/springmvc/emp/toPage
+	 * url：/ynlxhealth/emp/toPage
 	 * 函数功能说明:分页查询员工
 	 * @author 李玉鹏
 	 * @date 2015年5月14日
@@ -247,7 +247,7 @@ public class EmpRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/springmvc/emp/searchBykeyValue/toPage
+	 * url:/ynlxhealth/emp/searchBykeyValue/toPage
 	 * 函数功能说明:条件查询实现分页
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -271,7 +271,7 @@ public class EmpRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url::/springmvc/emp/searchEmpInOrgids
+	 * url::/ynlxhealth/emp/searchEmpInOrgids
 	 * 函数功能说明:查询组织下的所有员工
 	 * @author 张毕思 
 	 * @date 2016年1月18日

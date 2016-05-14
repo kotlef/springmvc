@@ -62,7 +62,7 @@ function HttpUploaderMgr()
 		, "Compress"		: ""//是否开启压缩。值：zip
 		, "AppPath"			: ""//网站虚拟目录名称。子文件夹 web
 		, "FileFieldName"	: "fileData"//文件字段名称
-		, "PostUrl"			: "/springmvc/files/upload"
+		, "PostUrl"			: "/ynlxhealth/files/upload"
         //x86
 		, "ClsidDroper"		: "4D2454F8-EB25-465f-B867-C2A3E9F3D4B4"
 		, "ClsidUploader"	: "7AAE6FD3-C2F2-49d5-A790-1103848B3531"

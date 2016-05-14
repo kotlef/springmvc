@@ -13,6 +13,7 @@ package com.ynswet.system.sc.rest;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Org;
 import com.ynswet.system.sc.domain.Post;
@@ -51,7 +51,7 @@ import com.ynswet.system.sc.service.PostService;
  */
 @RestController
 @RequestMapping("/post")
-public class PostRest extends BaseRest{
+public class PostRest extends BaseRest {
 	
 	@Autowired
 	private PostService postService;
@@ -66,7 +66,7 @@ public class PostRest extends BaseRest{
 	private RoleRepository roleRepository;
 	
 	/**
-	 * url:/springmvc/post
+	 * url:/ynlxhealth/post
 	 * 函数功能说明:保存岗位信息
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -90,7 +90,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/post/{postid}
+	 * url:/ynlxhealth/post/{postid}
 	 * 函数功能说明:修改岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -113,7 +113,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/post/{postids}
+	 * url:/ynlxhealth/post/{postids}
 	 * 函数功能说明:删除岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -138,7 +138,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/post
+	 * url:/ynlxhealth/post
 	 * 函数功能说明:查询所有的岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -157,7 +157,7 @@ public class PostRest extends BaseRest{
 	}	
 	
 	/**
-	 * url:/springmvc/post/toPage
+	 * url:/ynlxhealth/post/toPage
 	 * 函数功能说明:分页查询所有的岗位记录
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -182,7 +182,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/post/list/searchUserByOrgidAndRoleCode
+	 * url:/ynlxhealth/post/list/searchUserByOrgidAndRoleCode
 	 * 函数功能说明
 	 * @author 张明坤 
 	 * @date 2015年6月18日
@@ -220,7 +220,7 @@ public class PostRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/post/list/searchUserByOrgCodeAndRoleCode
+	 * url:/ynlxhealth/post/list/searchUserByOrgCodeAndRoleCode
 	 * 函数功能说明
 	 * @author 李玉鹏
 	 * @date 2015年7月20日

@@ -13,6 +13,7 @@ package com.ynswet.system.sc.rest;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.Orggroup;
 import com.ynswet.system.sc.repository.OrggroupRepository;
@@ -47,7 +47,7 @@ import com.ynswet.system.sc.service.OrggroupService;
  */
 @RestController
 @RequestMapping("/orggroup")
-public class OrggroupRest extends BaseRest{
+public class OrggroupRest extends BaseRest {
 	
 	@Autowired
 	private OrggroupService orggroupService;
@@ -56,7 +56,7 @@ public class OrggroupRest extends BaseRest{
 	private OrggroupRepository orggroupRepository;
 	
 	/**
-	 * url：/springmvc/orggroup
+	 * url：/ynlxhealth/orggroup
 	 * 函数功能说明:保存机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月13日
@@ -87,7 +87,7 @@ public class OrggroupRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url：/springmvc/orggroup/{orggroupId}
+	 * url：/ynlxhealth/orggroup/{orggroupId}
 	 * 函数功能说明:修改机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月25日
@@ -133,7 +133,7 @@ public class OrggroupRest extends BaseRest{
 
 	}
 	/**
-	 * url：/springmvc/orggroup/{orggroupIds}
+	 * url：/ynlxhealth/orggroup/{orggroupIds}
 	 * 函数功能说明:删除机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -157,7 +157,7 @@ public class OrggroupRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url：/springmvc/orggroup
+	 * url：/ynlxhealth/orggroup
 	 * 函数功能说明:查询所有的机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月13日
@@ -177,7 +177,7 @@ public class OrggroupRest extends BaseRest{
 	}
 	
 	/**
-	 * url：/springmvc/orggroup/toPage
+	 * url：/ynlxhealth/orggroup/toPage
 	 * 函数功能说明:分页查询所有的机构
 	 * @author 李玉鹏 
 	 * @date 2015年5月14日
@@ -225,7 +225,7 @@ public class OrggroupRest extends BaseRest{
 		return orggroupList;
 	}
 	/**
-	 * url:/springmvc/orggroup/searchBykeyValue/toPage
+	 * url:/ynlxhealth/orggroup/searchBykeyValue/toPage
 	 * 函数功能说明:条件查询实现分页
 	 * @author 张毕思 
 	 * @date 2015年7月15日
@@ -249,7 +249,7 @@ public class OrggroupRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/orggroup/find/parentId
+	 * url:/ynlxhealth/orggroup/find/parentId
 	 * 函数功能说明:根据父节点ID查询
 	 * @author 李玉鹏 
 	 * @date 2015年7月16日
@@ -272,7 +272,7 @@ public class OrggroupRest extends BaseRest{
     }
     
     /**
-	 * url:/springmvc/orggroup/find/parentId
+	 * url:/ynlxhealth/orggroup/find/parentId
 	 * 函数功能说明:根据父节点ID查询（带复选框）
 	 * @author 李玉鹏 
 	 * @date 2015年7月16日
@@ -294,7 +294,7 @@ public class OrggroupRest extends BaseRest{
         return list;
     }
     /**
-     * url:/springmvc/orggroup/checkOrggroupId
+     * url:/ynlxhealth/orggroup/checkOrggroupId
      * 函数功能说明:验证机构编码的唯一性
      * @author 张毕思 
      * @date 2015年12月12日
@@ -315,7 +315,7 @@ public class OrggroupRest extends BaseRest{
 		}
     }
     /**
-     * /springmvc/orggroup/checkorggroupName
+     * /ynlxhealth/orggroup/checkorggroupName
      * 函数功能说明:验证组织名称的唯一
      * @author 张毕思 
      * @date 2015年12月14日
@@ -336,7 +336,7 @@ public class OrggroupRest extends BaseRest{
 		}
 	}
 	/**
-	 * url:/springmvc/orggroup/serchByParentIdAndStatus
+	 * url:/ynlxhealth/orggroup/serchByParentIdAndStatus
 	 * 函数功能说明:根据父节点id和状态查询子节点
 	 * @author 张毕思 
 	 * @date 2015年12月21日

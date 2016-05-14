@@ -105,7 +105,7 @@
 		}
 
 		if(Cookies.get("homepageId")==undefined)
-		     	Cookies.set('homepageId', '0', { path: '/springmvc' });
+		     	Cookies.set('homepageId', '0', { path: '/ynlxhealth' });
 
     </script>
 </body>

@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.ynswet.common.rest.BaseRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ynswet.common.domain.ListJsonStructure;
 import com.ynswet.common.domain.SingleJsonStructure;
-import com.ynswet.common.rest.BaseRest;
 import com.ynswet.common.util.BeanUtils;
 import com.ynswet.common.util.DateTimeUtils;
 import com.ynswet.system.sc.domain.OrgRes;
@@ -51,7 +51,7 @@ import com.ynswet.system.sc.service.OrgresService;
  */
 @RestController
 @RequestMapping("/orgres")
-public class OrgresRest extends BaseRest{
+public class OrgresRest extends BaseRest {
 	@Autowired
 	private OrgresService orgresService;
 	
@@ -65,7 +65,7 @@ public class OrgresRest extends BaseRest{
 	private OrgRepository orgRepository;
 	
 	/**
-	 * url:/springmvc/orgres/
+	 * url:/ynlxhealth/orgres/
 	 * 函数功能说明:为组织添加资源后保存到中间表orgres
 	 * @author 孙越 
 	 * @date 2015年8月10日
@@ -91,7 +91,7 @@ public class OrgresRest extends BaseRest{
 		return json;
 	}
 	/**
-	 * url:/springmvc/orgres/searchResByOrgId/{}
+	 * url:/ynlxhealth/orgres/searchResByOrgId/{}
 	 * 函数功能说明:查询组织下的资源
 	 * @author 孙越 
 	 * @date 2015年8月10日
@@ -137,7 +137,7 @@ public class OrgresRest extends BaseRest{
 	}
 	
 	/**
-	 * url:/springmvc/orgres/deleteResById
+	 * url:/ynlxhealth/orgres/deleteResById
 	 * 函数功能说明:删除组织下的资源
 	 * @author 孙越 
 	 * @date 2015年8月10日
@@ -273,7 +273,7 @@ System.out.println(arrIds[i]);
 	}
 
 	/**
-	 * url：url：ynlxcloud/orgres/saveMore
+	 * url：url：ynlxhealth/orgres/saveMore
 	 * 函数功能说明:保存多个组织资源
 	 * @author 张毕思 
 	 * @date 2015年12月17日

@@ -69,8 +69,8 @@ public class EncryptionBean extends AbstractRsaEncryption {
 		 * //System.out.println("encrypString:"+encrypString); String
 		 * passwd0=ere.decryptString(kp1,encrypString);
 		 * //System.out.println("passwd:"+passwd0); String
-		 * passwd1=ere.decryptString(kp1,encrypString);
-		 * //System.out.println("passwd:"+passwd1); String
+		 * passwhealth_fd=ere.decryptString(kp1,encrypString);
+		 * //System.out.println("passwd:"+passwhealth_fd); String
 		 * passwd2=ere.decryptStringByJs(kp1,encrypString);
 		 * //System.out.println("passwd:"+passwd2);
 		 */

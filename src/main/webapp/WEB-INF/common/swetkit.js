@@ -51,18 +51,19 @@ Swet.phone={
  * 定义服务器
  */
 Swet.server={
-	url:"http://localhost:8080",
-	pushUrl:"ws://www.ynswet.com:8080",
-	premesUrl:"http://localhost:8080",
-	jobtaskUrl:"http://localhost:8080",
-	ossUrl:"http://localhost:8080",
-	runUrl:"http://localhost:8080"
+	url:"http://localhost:8082",
+	pushUrl:"ws://localhost:8082",
+	premesUrl:"http://localhost:8082",
+	jobtaskUrl:"http://localhost:8082",
+	ossUrl:"http://localhost:8082",
+	runUrl:"http://localhost:8082"
 };
+Swet.server.health=Swet.server.url+"/ynlxhealth";
 Swet.server.mainArchive=Swet.server.url+"/ynlxmainarchive";
 Swet.server.alarmCenter=Swet.server.url+"/ynlxalarmcenter";
 Swet.server.business=Swet.server.url+"/ynlxbusiness";
 Swet.server.productRun=Swet.server.runUrl+"/ynlxproductrun";
-Swet.server.cloud=Swet.server.url+"/ynlxcloud";
+Swet.server.cloud=Swet.server.url+"/ynlxhealth";
 Swet.server.oss=Swet.server.ossUrl+"/ynlxjobtask";
 Swet.server.jobtask=Swet.server.jobtaskUrl+"/ynlxjobtask";
 Swet.server.msgpush=Swet.server.pushUrl+"/ynlxmsgpush/websocket";
